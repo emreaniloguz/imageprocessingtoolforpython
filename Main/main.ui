@@ -287,12 +287,24 @@ QPushButton:hover{
                   <property name="bottomMargin">
                    <number>0</number>
                   </property>
-                  <item>
+                  <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
                    <widget class="QPushButton" name="maximize_button">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
                     <property name="minimumSize">
                      <size>
-                      <width>0</width>
+                      <width>40</width>
                       <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>16777215</height>
                      </size>
                     </property>
                     <property name="toolTip">
@@ -443,8 +455,37 @@ QPushButton:hover{
             </property>
             <item>
              <widget class="QStackedWidget" name="StackedWidget">
+              <property name="font">
+               <font>
+                <strikeout>false</strikeout>
+               </font>
+              </property>
+              <property name="contextMenuPolicy">
+               <enum>Qt::DefaultContextMenu</enum>
+              </property>
+              <property name="acceptDrops">
+               <bool>false</bool>
+              </property>
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;background-color:none;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="statusTip">
+               <string/>
+              </property>
+              <property name="accessibleDescription">
+               <string/>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::NoFrame</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Plain</enum>
+              </property>
+              <property name="lineWidth">
+               <number>1</number>
+              </property>
               <property name="currentIndex">
-               <number>0</number>
+               <number>1</number>
               </property>
               <widget class="QWidget" name="color_space_page">
                <property name="styleSheet">
@@ -529,6 +570,9 @@ background-color: rgb(41, 41, 41);
                            </property>
                            <property name="text">
                             <string/>
+                           </property>
+                           <property name="scaledContents">
+                            <bool>true</bool>
                            </property>
                           </widget>
                          </item>
@@ -625,7 +669,7 @@ border: none solid;</string>
                      <property name="frameShadow">
                       <enum>QFrame::Raised</enum>
                      </property>
-                     <layout class="QVBoxLayout" name="verticalLayout_2">
+                     <layout class="QHBoxLayout" name="horizontalLayout_12">
                       <property name="spacing">
                        <number>0</number>
                       </property>
@@ -642,320 +686,222 @@ border: none solid;</string>
                        <number>0</number>
                       </property>
                       <item>
-                       <widget class="QFrame" name="rgb">
-                        <property name="frameShape">
-                         <enum>QFrame::StyledPanel</enum>
+                       <widget class="QTabWidget" name="tabWidget">
+                        <property name="enabled">
+                         <bool>false</bool>
                         </property>
-                        <property name="frameShadow">
-                         <enum>QFrame::Raised</enum>
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
                         </property>
-                        <layout class="QVBoxLayout" name="verticalLayout_3">
-                         <property name="spacing">
-                          <number>0</number>
-                         </property>
-                         <property name="leftMargin">
-                          <number>0</number>
-                         </property>
-                         <property name="topMargin">
-                          <number>0</number>
-                         </property>
-                         <property name="rightMargin">
-                          <number>0</number>
-                         </property>
-                         <property name="bottomMargin">
-                          <number>0</number>
-                         </property>
-                         <item>
-                          <widget class="QFrame" name="rgb_graph">
-                           <property name="styleSheet">
-                            <string notr="true">background-color: rgb(41, 41, 41);</string>
-                           </property>
-                           <property name="frameShape">
-                            <enum>QFrame::StyledPanel</enum>
-                           </property>
-                           <property name="frameShadow">
-                            <enum>QFrame::Raised</enum>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QFrame" name="rgb_button">
-                           <property name="maximumSize">
-                            <size>
-                             <width>16777215</width>
-                             <height>30</height>
-                            </size>
-                           </property>
-                           <property name="styleSheet">
-                            <string notr="true">background-color: #bd93f9;
-border: 5px;
-</string>
-                           </property>
-                           <property name="frameShape">
-                            <enum>QFrame::StyledPanel</enum>
-                           </property>
-                           <property name="frameShadow">
-                            <enum>QFrame::Raised</enum>
-                           </property>
-                           <layout class="QVBoxLayout" name="verticalLayout_7">
-                            <property name="spacing">
-                             <number>0</number>
-                            </property>
-                            <property name="leftMargin">
-                             <number>0</number>
-                            </property>
-                            <property name="topMargin">
-                             <number>0</number>
-                            </property>
-                            <property name="rightMargin">
-                             <number>0</number>
-                            </property>
-                            <property name="bottomMargin">
-                             <number>0</number>
-                            </property>
-                            <item>
-                             <widget class="QPushButton" name="pushButton">
-                              <property name="minimumSize">
-                               <size>
-                                <width>0</width>
-                                <height>30</height>
-                               </size>
-                              </property>
-                              <property name="styleSheet">
-                               <string notr="true">QPushButton{
-	background-color: none;
-	background-color: rgb(189, 147, 249);
-	border: 5px;
-	border-radius: 5px;
+                        <property name="baseSize">
+                         <size>
+                          <width>0</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="toolTip">
+                         <string/>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">QTabBar::tab {	
+	 height: 40px;
+	 width:167px;
+	 background: #ff5555;
+	color: white;
+	border: 1px solid;
 
-	
-	font: 8pt &quot;Segoe MDL2 Assets&quot;;
 }
-QPushButton:hover{
-	background-color: rgb(150, 117, 198);
-	
+
+QTabWidget::pane{
+	border-color: rgb(41, 41, 41);
+
+}QTabBar::tab::selected{
+	border-color:white;  
+
+}
+
+QTabBar::tab::!selected{
+	border-color:black;
+}
+
+QTabBar::tab:selected {
+    / expand/overlap to the left and right by 4px /
+    margin-left: -4px;
+    margin-right: -1px;
+}
+
+</string>
+                        </property>
+                        <property name="currentIndex">
+                         <number>0</number>
+                        </property>
+                        <property name="iconSize">
+                         <size>
+                          <width>16</width>
+                          <height>16</height>
+                         </size>
+                        </property>
+                        <widget class="QWidget" name="RGB">
+                         <property name="minimumSize">
+                          <size>
+                           <width>100</width>
+                           <height>300</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <attribute name="title">
+                          <string>RGB</string>
+                         </attribute>
+                         <layout class="QHBoxLayout" name="horizontalLayout_13">
+                          <property name="spacing">
+                           <number>0</number>
+                          </property>
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <widget class="QFrame" name="rgb_frame">
+                            <property name="frameShape">
+                             <enum>QFrame::StyledPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                             <enum>QFrame::Raised</enum>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                        <widget class="QWidget" name="HSV">
+                         <property name="styleSheet">
+                          <string notr="true">QTabWidget::pane{
+	border-color: rgb(41, 41, 41);
+
+}QTabBar::tab::selected{
+	border-color:white;
+}
+
+QTabBar::tab::!selected{
+	border-color:black;
+}
+
+QTabBar::tab:selected {
+    / expand/overlap to the left and right by 4px /
+    margin-left: -4px;
+    margin-right: -1px;
+}
+
+QTabBar::tab:first:selected {
+    margin-left: 2; / the first selected tab has nothing to overlap with on the left /
+}
+
+QTabBar::tab:last:selected {
+    margin-right: 0; / the last selected tab has nothing to overlap with on the right /
+}
+</string>
+                         </property>
+                         <attribute name="title">
+                          <string>HSV</string>
+                         </attribute>
+                         <layout class="QHBoxLayout" name="horizontalLayout_15">
+                          <property name="spacing">
+                           <number>0</number>
+                          </property>
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <widget class="QFrame" name="hsv_frame">
+                            <property name="frameShape">
+                             <enum>QFrame::StyledPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                             <enum>QFrame::Raised</enum>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                        <widget class="QWidget" name="YUV">
+                         <property name="styleSheet">
+                          <string notr="true">QTabWidget::pane{
+	border-color: rgb(41, 41, 41);
+
+}QTabBar::tab::selected{
+	border-color:white;
+}
+
+QTabBar::tab::!selected{
+	border-color:black;
+}
+
+QTabBar::tab:selected {
+    / expand/overlap to the left and right by 4px /
+    margin-left: -4px;
+    margin-right: -1px;
+}
+
+QTabBar::tab:first:selected {
+    margin-left: 2; / the first selected tab has nothing to overlap with on the left /
+}
+
+QTabBar::tab:last:selected {
+    margin-right: 0; / the last selected tab has nothing to overlap with on the right /
 }</string>
-                              </property>
-                              <property name="text">
-                               <string>RGB</string>
-                              </property>
-                             </widget>
-                            </item>
-                           </layout>
-                          </widget>
-                         </item>
-                        </layout>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QFrame" name="yuv">
-                        <property name="frameShape">
-                         <enum>QFrame::StyledPanel</enum>
-                        </property>
-                        <property name="frameShadow">
-                         <enum>QFrame::Raised</enum>
-                        </property>
-                        <layout class="QVBoxLayout" name="verticalLayout_4">
-                         <property name="spacing">
-                          <number>0</number>
                          </property>
-                         <property name="leftMargin">
-                          <number>0</number>
-                         </property>
-                         <property name="topMargin">
-                          <number>0</number>
-                         </property>
-                         <property name="rightMargin">
-                          <number>0</number>
-                         </property>
-                         <property name="bottomMargin">
-                          <number>0</number>
-                         </property>
-                         <item>
-                          <widget class="QFrame" name="yuv_graph_frame">
-                           <property name="frameShape">
-                            <enum>QFrame::StyledPanel</enum>
-                           </property>
-                           <property name="frameShadow">
-                            <enum>QFrame::Raised</enum>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QFrame" name="yuv_button_frame">
-                           <property name="maximumSize">
-                            <size>
-                             <width>16777215</width>
-                             <height>30</height>
-                            </size>
-                           </property>
-                           <property name="styleSheet">
-                            <string notr="true">background-color: #bd93f9;
-border: 5px;
-</string>
-                           </property>
-                           <property name="frameShape">
-                            <enum>QFrame::StyledPanel</enum>
-                           </property>
-                           <property name="frameShadow">
-                            <enum>QFrame::Raised</enum>
-                           </property>
-                           <layout class="QVBoxLayout" name="verticalLayout_6">
-                            <property name="spacing">
-                             <number>0</number>
+                         <attribute name="title">
+                          <string>YUV</string>
+                         </attribute>
+                         <layout class="QHBoxLayout" name="horizontalLayout_14">
+                          <property name="spacing">
+                           <number>0</number>
+                          </property>
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <widget class="QFrame" name="yuv_frame">
+                            <property name="frameShape">
+                             <enum>QFrame::StyledPanel</enum>
                             </property>
-                            <property name="leftMargin">
-                             <number>0</number>
+                            <property name="frameShadow">
+                             <enum>QFrame::Raised</enum>
                             </property>
-                            <property name="topMargin">
-                             <number>0</number>
-                            </property>
-                            <property name="rightMargin">
-                             <number>0</number>
-                            </property>
-                            <property name="bottomMargin">
-                             <number>0</number>
-                            </property>
-                            <item>
-                             <widget class="QPushButton" name="yuv_button">
-                              <property name="minimumSize">
-                               <size>
-                                <width>0</width>
-                                <height>30</height>
-                               </size>
-                              </property>
-                              <property name="maximumSize">
-                               <size>
-                                <width>16777215</width>
-                                <height>30</height>
-                               </size>
-                              </property>
-                              <property name="styleSheet">
-                               <string notr="true">QPushButton{
-	background-color: none;
-	background-color: rgb(189, 147, 249);
-	border: 5px;
-	border-radius: 5px;
-
-	font: 8pt &quot;Segoe MDL2 Assets&quot;;
-}
-QPushButton:hover{
-	background-color: rgb(150, 117, 198);
-	
-}
-</string>
-                              </property>
-                              <property name="text">
-                               <string>YUV</string>
-                              </property>
-                             </widget>
-                            </item>
-                           </layout>
-                          </widget>
-                         </item>
-                        </layout>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QFrame" name="hsv">
-                        <property name="frameShape">
-                         <enum>QFrame::StyledPanel</enum>
-                        </property>
-                        <property name="frameShadow">
-                         <enum>QFrame::Raised</enum>
-                        </property>
-                        <layout class="QVBoxLayout" name="verticalLayout_5">
-                         <property name="spacing">
-                          <number>0</number>
-                         </property>
-                         <property name="leftMargin">
-                          <number>0</number>
-                         </property>
-                         <property name="topMargin">
-                          <number>0</number>
-                         </property>
-                         <property name="rightMargin">
-                          <number>0</number>
-                         </property>
-                         <property name="bottomMargin">
-                          <number>0</number>
-                         </property>
-                         <item>
-                          <widget class="QFrame" name="hsv_graph">
-                           <property name="frameShape">
-                            <enum>QFrame::StyledPanel</enum>
-                           </property>
-                           <property name="frameShadow">
-                            <enum>QFrame::Raised</enum>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QFrame" name="hsv_button">
-                           <property name="maximumSize">
-                            <size>
-                             <width>16777215</width>
-                             <height>30</height>
-                            </size>
-                           </property>
-                           <property name="styleSheet">
-                            <string notr="true">background-color: #bd93f9;
-border: 5px;
-border-color: #bd93f9;</string>
-                           </property>
-                           <property name="frameShape">
-                            <enum>QFrame::StyledPanel</enum>
-                           </property>
-                           <property name="frameShadow">
-                            <enum>QFrame::Raised</enum>
-                           </property>
-                           <layout class="QVBoxLayout" name="verticalLayout_8">
-                            <property name="spacing">
-                             <number>0</number>
-                            </property>
-                            <property name="leftMargin">
-                             <number>0</number>
-                            </property>
-                            <property name="topMargin">
-                             <number>0</number>
-                            </property>
-                            <property name="rightMargin">
-                             <number>0</number>
-                            </property>
-                            <property name="bottomMargin">
-                             <number>0</number>
-                            </property>
-                            <item>
-                             <widget class="QPushButton" name="pushButton_2">
-                              <property name="minimumSize">
-                               <size>
-                                <width>0</width>
-                                <height>30</height>
-                               </size>
-                              </property>
-                              <property name="styleSheet">
-                               <string notr="true">QPushButton{
-	background-color: none;
-	background-color: rgb(189, 147, 249);
-	border: 5px;
-	border-radius: 5px;
-
-	font: 8pt &quot;Segoe MDL2 Assets&quot;;
-}
-QPushButton:hover{
-	background-color: rgb(150, 117, 198);
-	
-}</string>
-                              </property>
-                              <property name="text">
-                               <string>HSV</string>
-                              </property>
-                             </widget>
-                            </item>
-                           </layout>
-                          </widget>
-                         </item>
-                        </layout>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
                        </widget>
                       </item>
                      </layout>
