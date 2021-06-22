@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>842</width>
-    <height>547</height>
+    <height>532</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -192,6 +192,12 @@ background-color: rgb(41, 41, 41);
                             <size>
                              <width>300</width>
                              <height>0</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>1080</width>
+                             <height>720</height>
                             </size>
                            </property>
                            <property name="text">

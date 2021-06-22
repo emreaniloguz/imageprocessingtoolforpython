@@ -7,7 +7,7 @@ from PySide2.QtWidgets import *
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 # GUI FILE
-from ui_python import
+from ui_python import Ui_MainWindow
 import matplotlib
 import random
 from functions import *
