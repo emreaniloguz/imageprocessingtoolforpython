@@ -485,7 +485,7 @@ QPushButton:hover{
                <number>1</number>
               </property>
               <property name="currentIndex">
-               <number>1</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="color_space_page">
                <property name="styleSheet">
@@ -688,7 +688,7 @@ border: none solid;</string>
                       <item>
                        <widget class="QTabWidget" name="tabWidget">
                         <property name="enabled">
-                         <bool>false</bool>
+                         <bool>true</bool>
                         </property>
                         <property name="sizePolicy">
                          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -706,7 +706,7 @@ border: none solid;</string>
                          <string/>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">QTabBar::tab {	
+                         <string notr="true">QTabBar::tab {
 	 height: 40px;
 	 width:167px;
 	 background: #ff5555;
@@ -716,24 +716,21 @@ border: none solid;</string>
 }
 
 QTabWidget::pane{
-	border-color: rgb(41, 41, 41);
-
+border-color: rgb(41, 41, 41);
 }QTabBar::tab::selected{
 	border-color:white;  
 
 }
 
 QTabBar::tab::!selected{
-	border-color:black;
+border-color:black;
 }
 
 QTabBar::tab:selected {
-    / expand/overlap to the left and right by 4px /
-    margin-left: -4px;
+   
+ margin-left: -4px;
     margin-right: -1px;
-}
-
-</string>
+}</string>
                         </property>
                         <property name="currentIndex">
                          <number>0</number>
@@ -787,31 +784,7 @@ QTabBar::tab:selected {
                         </widget>
                         <widget class="QWidget" name="HSV">
                          <property name="styleSheet">
-                          <string notr="true">QTabWidget::pane{
-	border-color: rgb(41, 41, 41);
-
-}QTabBar::tab::selected{
-	border-color:white;
-}
-
-QTabBar::tab::!selected{
-	border-color:black;
-}
-
-QTabBar::tab:selected {
-    / expand/overlap to the left and right by 4px /
-    margin-left: -4px;
-    margin-right: -1px;
-}
-
-QTabBar::tab:first:selected {
-    margin-left: 2; / the first selected tab has nothing to overlap with on the left /
-}
-
-QTabBar::tab:last:selected {
-    margin-right: 0; / the last selected tab has nothing to overlap with on the right /
-}
-</string>
+                          <string notr="true"/>
                          </property>
                          <attribute name="title">
                           <string>HSV</string>
@@ -846,30 +819,7 @@ QTabBar::tab:last:selected {
                         </widget>
                         <widget class="QWidget" name="YUV">
                          <property name="styleSheet">
-                          <string notr="true">QTabWidget::pane{
-	border-color: rgb(41, 41, 41);
-
-}QTabBar::tab::selected{
-	border-color:white;
-}
-
-QTabBar::tab::!selected{
-	border-color:black;
-}
-
-QTabBar::tab:selected {
-    / expand/overlap to the left and right by 4px /
-    margin-left: -4px;
-    margin-right: -1px;
-}
-
-QTabBar::tab:first:selected {
-    margin-left: 2; / the first selected tab has nothing to overlap with on the left /
-}
-
-QTabBar::tab:last:selected {
-    margin-right: 0; / the last selected tab has nothing to overlap with on the right /
-}</string>
+                          <string notr="true"/>
                          </property>
                          <attribute name="title">
                           <string>YUV</string>

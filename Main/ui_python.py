@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainuxaWCw.ui'
+## Form generated from reading UI file 'mainLBuwwg.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1016, 645)
+        MainWindow.resize(1640, 960)
         MainWindow.setStyleSheet(u"background-color: rgb(63, 63, 63);")
         MainWindow.setIconSize(QSize(24, 24))
         MainWindow.setAnimated(True)
@@ -116,7 +116,13 @@ class Ui_MainWindow(object):
         self.verticalLayout_10.setContentsMargins(0, 0, 0, 0)
         self.maximize_button = QPushButton(self.maximize_button_frame)
         self.maximize_button.setObjectName(u"maximize_button")
-        self.maximize_button.setMinimumSize(QSize(0, 25))
+        sizePolicy = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.maximize_button.sizePolicy().hasHeightForWidth())
+        self.maximize_button.setSizePolicy(sizePolicy)
+        self.maximize_button.setMinimumSize(QSize(40, 25))
+        self.maximize_button.setMaximumSize(QSize(16777215, 16777215))
         self.maximize_button.setStyleSheet(u"QPushButton{\n"
 "	border: 0px solid;\n"
 "}\n"
@@ -129,7 +135,7 @@ class Ui_MainWindow(object):
         self.maximize_button.setIcon(icon1)
         self.maximize_button.setIconSize(QSize(12, 12))
 
-        self.verticalLayout_10.addWidget(self.maximize_button)
+        self.verticalLayout_10.addWidget(self.maximize_button, 0, Qt.AlignHCenter|Qt.AlignVCenter)
 
 
         self.horizontalLayout_9.addWidget(self.maximize_button_frame)
@@ -180,6 +186,14 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
         self.StackedWidget = QStackedWidget(self.body)
         self.StackedWidget.setObjectName(u"StackedWidget")
+        font = QFont()
+        font.setStrikeOut(False)
+        self.StackedWidget.setFont(font)
+        self.StackedWidget.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.StackedWidget.setAcceptDrops(False)
+        self.StackedWidget.setFrameShape(QFrame.NoFrame)
+        self.StackedWidget.setFrameShadow(QFrame.Plain)
+        self.StackedWidget.setLineWidth(1)
         self.color_space_page = QWidget()
         self.color_space_page.setObjectName(u"color_space_page")
         self.color_space_page.setStyleSheet(u"background-color: rgb(31, 31, 31);")
@@ -214,10 +228,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.photo = QLabel(self.import_photo)
         self.photo.setObjectName(u"photo")
-        self.photo.setMinimumSize(QSize(480, 480))
-        #self.photo.setMaximumSize(QSize(480, 480))
-        self.photo.setScaledContents(1)
-
+        self.photo.setMinimumSize(QSize(300, 0))
+        self.photo.setScaledContents(True)
 
         self.horizontalLayout_5.addWidget(self.photo)
 
@@ -226,7 +238,7 @@ class Ui_MainWindow(object):
 
         self.import_frame = QFrame(self.import_page)
         self.import_frame.setObjectName(u"import_frame")
-        self.import_frame.setMaximumSize(QSize(480, 480))
+        self.import_frame.setMaximumSize(QSize(16777215, 70))
         self.import_frame.setStyleSheet(u"border: 5px;\n"
 "border-radius: 5px;\n"
 "background-color:rgb(41, 41, 41);")
@@ -239,7 +251,7 @@ class Ui_MainWindow(object):
         self.import_button = QPushButton(self.import_frame)
         self.import_button.setObjectName(u"import_button")
         self.import_button.setMinimumSize(QSize(120, 30))
-        self.import_button.setMaximumSize(QSize(480, 16777215))
+        self.import_button.setMaximumSize(QSize(70, 16777215))
         self.import_button.setLayoutDirection(Qt.LeftToRight)
         self.import_button.setStyleSheet(u"QPushButton{\n"
 "	background-color: none;\n"
@@ -269,166 +281,93 @@ class Ui_MainWindow(object):
 "border: none solid;")
         self.graph_frame.setFrameShape(QFrame.StyledPanel)
         self.graph_frame.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_2 = QVBoxLayout(self.graph_frame)
-        self.verticalLayout_2.setSpacing(0)
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.rgb = QFrame(self.graph_frame)
-        self.rgb.setObjectName(u"rgb")
-        self.rgb.setFrameShape(QFrame.StyledPanel)
-        self.rgb.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_3 = QVBoxLayout(self.rgb)
-        self.verticalLayout_3.setSpacing(0)
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.rgb_graph = QFrame(self.rgb)
-        self.rgb_graph.setObjectName(u"rgb_graph")
-        self.rgb_graph.setStyleSheet(u"background-color: rgb(41, 41, 41);")
-        self.rgb_graph.setFrameShape(QFrame.StyledPanel)
-        self.rgb_graph.setFrameShadow(QFrame.Raised)
-
-        self.verticalLayout_3.addWidget(self.rgb_graph)
-
-        self.rgb_button = QFrame(self.rgb)
-        self.rgb_button.setObjectName(u"rgb_button")
-        self.rgb_button.setMaximumSize(QSize(16777215, 30))
-        self.rgb_button.setStyleSheet(u"background-color: #bd93f9;\n"
-"border: 5px;\n"
-"")
-        self.rgb_button.setFrameShape(QFrame.StyledPanel)
-        self.rgb_button.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_7 = QVBoxLayout(self.rgb_button)
-        self.verticalLayout_7.setSpacing(0)
-        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
-        self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
-        self.pushButton = QPushButton(self.rgb_button)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setMinimumSize(QSize(0, 30))
-        self.pushButton.setStyleSheet(u"QPushButton{\n"
-"	background-color: none;\n"
-"	background-color: rgb(189, 147, 249);\n"
-"	border: 5px;\n"
-"	border-radius: 5px;\n"
+        self.horizontalLayout_12 = QHBoxLayout(self.graph_frame)
+        self.horizontalLayout_12.setSpacing(0)
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.horizontalLayout_12.setContentsMargins(0, 0, 0, 0)
+        self.tabWidget = QTabWidget(self.graph_frame)
+        self.tabWidget.setObjectName(u"tabWidget")
+        self.tabWidget.setEnabled(True)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.tabWidget.sizePolicy().hasHeightForWidth())
+        self.tabWidget.setSizePolicy(sizePolicy1)
+        self.tabWidget.setBaseSize(QSize(0, 0))
+        self.tabWidget.setStyleSheet(u"QTabBar::tab {\n"
+"	 height: 40px;\n"
+"	 width:280px;\n"
+"	 background: #ff5555;\n"
+"	color: white;\n"
+"	border: 1px solid;\n"
 "\n"
-"	\n"
-"	font: 8pt \"Segoe MDL2 Assets\";\n"
 "}\n"
-"QPushButton:hover{\n"
-"	background-color: rgb(150, 117, 198);\n"
-"	\n"
+"\n"
+"QTabWidget::pane{\n"
+"border-color: rgb(41, 41, 41);\n"
+"}QTabBar::tab::selected{\n"
+"	border-color:white;  \n"
+"\n"
+"}\n"
+"\n"
+"QTabBar::tab::!selected{\n"
+"border-color:black;\n"
+"}\n"
+"\n"
+"QTabBar::tab:selected {\n"
+"   \n"
+" margin-left: -4px;\n"
+"    margin-right: -1px;\n"
 "}")
+        self.tabWidget.setIconSize(QSize(16, 16))
+        self.RGB = QWidget()
+        self.RGB.setObjectName(u"RGB")
+        self.RGB.setMinimumSize(QSize(100, 300))
+        self.RGB.setStyleSheet(u"")
+        self.horizontalLayout_13 = QHBoxLayout(self.RGB)
+        self.horizontalLayout_13.setSpacing(0)
+        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
+        self.horizontalLayout_13.setContentsMargins(0, 0, 0, 0)
+        self.rgb_frame = QFrame(self.RGB)
+        self.rgb_frame.setObjectName(u"rgb_frame")
+        self.rgb_frame.setFrameShape(QFrame.StyledPanel)
+        self.rgb_frame.setFrameShadow(QFrame.Raised)
 
-        self.verticalLayout_7.addWidget(self.pushButton)
+        self.horizontalLayout_13.addWidget(self.rgb_frame)
 
+        self.tabWidget.addTab(self.RGB, "")
+        self.HSV = QWidget()
+        self.HSV.setObjectName(u"HSV")
+        self.HSV.setStyleSheet(u"")
+        self.horizontalLayout_15 = QHBoxLayout(self.HSV)
+        self.horizontalLayout_15.setSpacing(0)
+        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
+        self.horizontalLayout_15.setContentsMargins(0, 0, 0, 0)
+        self.hsv_frame = QFrame(self.HSV)
+        self.hsv_frame.setObjectName(u"hsv_frame")
+        self.hsv_frame.setFrameShape(QFrame.StyledPanel)
+        self.hsv_frame.setFrameShadow(QFrame.Raised)
 
-        self.verticalLayout_3.addWidget(self.rgb_button)
+        self.horizontalLayout_15.addWidget(self.hsv_frame)
 
+        self.tabWidget.addTab(self.HSV, "")
+        self.YUV = QWidget()
+        self.YUV.setObjectName(u"YUV")
+        self.YUV.setStyleSheet(u"")
+        self.horizontalLayout_14 = QHBoxLayout(self.YUV)
+        self.horizontalLayout_14.setSpacing(0)
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.horizontalLayout_14.setContentsMargins(0, 0, 0, 0)
+        self.yuv_frame = QFrame(self.YUV)
+        self.yuv_frame.setObjectName(u"yuv_frame")
+        self.yuv_frame.setFrameShape(QFrame.StyledPanel)
+        self.yuv_frame.setFrameShadow(QFrame.Raised)
 
-        self.verticalLayout_2.addWidget(self.rgb)
+        self.horizontalLayout_14.addWidget(self.yuv_frame)
 
-        self.yuv = QFrame(self.graph_frame)
-        self.yuv.setObjectName(u"yuv")
-        self.yuv.setFrameShape(QFrame.StyledPanel)
-        self.yuv.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_4 = QVBoxLayout(self.yuv)
-        self.verticalLayout_4.setSpacing(0)
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
-        self.yuv_graph_frame = QFrame(self.yuv)
-        self.yuv_graph_frame.setObjectName(u"yuv_graph_frame")
-        self.yuv_graph_frame.setFrameShape(QFrame.StyledPanel)
-        self.yuv_graph_frame.setFrameShadow(QFrame.Raised)
+        self.tabWidget.addTab(self.YUV, "")
 
-        self.verticalLayout_4.addWidget(self.yuv_graph_frame)
-
-        self.yuv_button_frame = QFrame(self.yuv)
-        self.yuv_button_frame.setObjectName(u"yuv_button_frame")
-        self.yuv_button_frame.setMaximumSize(QSize(16777215, 30))
-        self.yuv_button_frame.setStyleSheet(u"background-color: #bd93f9;\n"
-"border: 5px;\n"
-"")
-        self.yuv_button_frame.setFrameShape(QFrame.StyledPanel)
-        self.yuv_button_frame.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_6 = QVBoxLayout(self.yuv_button_frame)
-        self.verticalLayout_6.setSpacing(0)
-        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
-        self.yuv_button = QPushButton(self.yuv_button_frame)
-        self.yuv_button.setObjectName(u"yuv_button")
-        self.yuv_button.setMinimumSize(QSize(0, 30))
-        self.yuv_button.setMaximumSize(QSize(16777215, 30))
-        self.yuv_button.setStyleSheet(u"QPushButton{\n"
-"	background-color: none;\n"
-"	background-color: rgb(189, 147, 249);\n"
-"	border: 5px;\n"
-"	border-radius: 5px;\n"
-"\n"
-"	font: 8pt \"Segoe MDL2 Assets\";\n"
-"}\n"
-"QPushButton:hover{\n"
-"	background-color: rgb(150, 117, 198);\n"
-"	\n"
-"}\n"
-"")
-
-        self.verticalLayout_6.addWidget(self.yuv_button)
-
-
-        self.verticalLayout_4.addWidget(self.yuv_button_frame)
-
-
-        self.verticalLayout_2.addWidget(self.yuv)
-
-        self.hsv = QFrame(self.graph_frame)
-        self.hsv.setObjectName(u"hsv")
-        self.hsv.setFrameShape(QFrame.StyledPanel)
-        self.hsv.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_5 = QVBoxLayout(self.hsv)
-        self.verticalLayout_5.setSpacing(0)
-        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
-        self.hsv_graph = QFrame(self.hsv)
-        self.hsv_graph.setObjectName(u"hsv_graph")
-        self.hsv_graph.setFrameShape(QFrame.StyledPanel)
-        self.hsv_graph.setFrameShadow(QFrame.Raised)
-
-        self.verticalLayout_5.addWidget(self.hsv_graph)
-
-        self.hsv_button = QFrame(self.hsv)
-        self.hsv_button.setObjectName(u"hsv_button")
-        self.hsv_button.setMaximumSize(QSize(16777215, 30))
-        self.hsv_button.setStyleSheet(u"background-color: #bd93f9;\n"
-"border: 5px;\n"
-"border-color: #bd93f9;")
-        self.hsv_button.setFrameShape(QFrame.StyledPanel)
-        self.hsv_button.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_8 = QVBoxLayout(self.hsv_button)
-        self.verticalLayout_8.setSpacing(0)
-        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
-        self.verticalLayout_8.setContentsMargins(0, 0, 0, 0)
-        self.pushButton_2 = QPushButton(self.hsv_button)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setMinimumSize(QSize(0, 30))
-        self.pushButton_2.setStyleSheet(u"QPushButton{\n"
-"	background-color: none;\n"
-"	background-color: rgb(189, 147, 249);\n"
-"	border: 5px;\n"
-"	border-radius: 5px;\n"
-"\n"
-"	font: 8pt \"Segoe MDL2 Assets\";\n"
-"}\n"
-"QPushButton:hover{\n"
-"	background-color: rgb(150, 117, 198);\n"
-"	\n"
-"}")
-
-        self.verticalLayout_8.addWidget(self.pushButton_2)
-
-
-        self.verticalLayout_5.addWidget(self.hsv_button)
-
-
-        self.verticalLayout_2.addWidget(self.hsv)
+        self.horizontalLayout_12.addWidget(self.tabWidget)
 
 
         self.horizontalLayout_3.addWidget(self.graph_frame)
@@ -467,6 +406,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.StackedWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -508,10 +448,22 @@ class Ui_MainWindow(object):
         self.exit_button.setAccessibleDescription("")
 #endif // QT_CONFIG(accessibility)
         self.exit_button.setText("")
+#if QT_CONFIG(tooltip)
+        self.StackedWidget.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>background-color:none;</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.StackedWidget.setStatusTip("")
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(accessibility)
+        self.StackedWidget.setAccessibleDescription("")
+#endif // QT_CONFIG(accessibility)
         self.photo.setText("")
         self.import_button.setText(QCoreApplication.translate("MainWindow", u"Import Image ", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"RGB", None))
-        self.yuv_button.setText(QCoreApplication.translate("MainWindow", u"YUV", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"HSV", None))
+#if QT_CONFIG(tooltip)
+        self.tabWidget.setToolTip("")
+#endif // QT_CONFIG(tooltip)
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.RGB), QCoreApplication.translate("MainWindow", u"RGB", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.HSV), QCoreApplication.translate("MainWindow", u"HSV", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.YUV), QCoreApplication.translate("MainWindow", u"YUV", None))
     # retranslateUi
 

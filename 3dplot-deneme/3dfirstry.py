@@ -1,97 +1,62 @@
 import sys
-import platform
-from PySide2 import QtCore, QtGui, QtWidgets
-from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt, QEvent)
-from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
-from PySide2.QtWidgets import *
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.figure import Figure
-# GUI FILE
-from ui_python import Ui_MainWindow
-import matplotlib
-import random
-from functions import *
-from mpl_toolkits import mplot3d
+import time
+
 import numpy as np
 
-# IMPORT FUNCTIONS
-
-class MplCanvas(FigureCanvas):
-
-    def __init__(self, parent=None, width=2, height=2, dpi=100,facecolor=(41/255,41/255,41/255,1)):
-        fig = Figure(figsize=(width, height), dpi=dpi,facecolor=facecolor)
-        self.fig=fig
-        self.axes = fig.add_subplot(111,projection='3d')
-
-        self.compute_initial_figure()
-        #super(MplCanvas, self).__init__(fig)
-        FigureCanvas.__init__(self,self.fig)
-        self.setParent(parent)
-
-        FigureCanvas.setSizePolicy(self, QSizePolicy.Expanding, QSizePolicy.Expanding)
-        FigureCanvas.updateGeometry(self)
-        self.axes.mouse_init()
+from matplotlib.backends.qt_compat import QtCore, QtWidgets
+if QtCore.qVersion() >= "5.":
+    from matplotlib.backends.backend_qt5agg import (
+        FigureCanvas, NavigationToolbar2QT as NavigationToolbar)
+else:
+    from matplotlib.backends.backend_qt4agg import (
+        FigureCanvas, NavigationToolbar2QT as NavigationToolbar)
+from matplotlib.figure import Figure
 
 
-
-
-    def compute_initial_figure(self):
-        pass
-
-class MyStaticMplCanvas(MplCanvas):
-    # Simple canvas with a sine plot.
-    def compute_initial_figure(self):
-        # t = arange(0.0, 3.0, 0.01)
-        # s = sin(2 * pi * t)
-        # self.axes.plot(t, s)
-        xs = [1, 2]
-        ys = [1, 2]
-        zs = [1, 2]
-
-        self.axes.scatter(xs, ys, zs,color=(141 / 255, 188 / 255, 142 / 255, 1))
-        self.axes.set_facecolor((41/255,41/255,41/255,1))
-
-        self.axes.mouse_init()
-
-class MainWindow(QMainWindow):
+class ApplicationWindow(QtWidgets.QMainWindow):
     def __init__(self):
-        QMainWindow.__init__(self)
-        self.ui = Ui_MainWindow()
-        self.ui.setupUi(self)
+        super().__init__()
+        self._main = QtWidgets.QWidget()
+        self.setCentralWidget(self._main)
+        layout = QtWidgets.QVBoxLayout(self._main)
 
+        static_canvas = FigureCanvas(Figure(figsize=(5, 3)))
+        layout.addWidget(static_canvas)
+        self.addToolBar(NavigationToolbar(static_canvas, self))
 
-        self.yuv_graph_layout = QHBoxLayout()
-        self.hsv_graph_layout = QHBoxLayout()
-        self.rgb_graph_layout = QHBoxLayout()
+        dynamic_canvas = FigureCanvas(Figure(figsize=(5, 3)))
+        layout.addWidget(dynamic_canvas)
+        self.addToolBar(QtCore.Qt.BottomToolBarArea,
+                        NavigationToolbar(dynamic_canvas, self))
 
+        self._static_ax = static_canvas.figure.subplots()
+        t = np.linspace(0, 10, 501)
+        self._static_ax.plot(t, np.tan(t), ".")
 
+        self._dynamic_ax = dynamic_canvas.figure.subplots()
+        t = np.linspace(0, 10, 101)
+        # Set up a Line2D.
+        self._line, = self._dynamic_ax.plot(t, np.sin(t + time.time()))
+        self._timer = dynamic_canvas.new_timer(50)
+        self._timer.add_callback(self._update_canvas)
+        self._timer.start()
 
-        self.ui.yuv_graph_frame.setLayout(self.yuv_graph_layout)
-        self.ui.hsv_graph.setLayout(self.hsv_graph_layout)
-        self.ui.rgb_graph.setLayout(self.rgb_graph_layout)
-
-
-
-
-        self.yuv_graph = MyStaticMplCanvas(self, width=5, height= 2, dpi=220)
-        self.hsv_graph = MyStaticMplCanvas(self, width=5,height=2, dpi=220)
-        self.rgb_graph = MyStaticMplCanvas(self, width=5,height=2,dpi=220)
-
-
-        self.ui.import_button.clicked.connect(lambda : Functions.import_button_clicked(self))
-
-
-        self.yuv_graph_layout.addWidget(self.yuv_graph)
-        self.hsv_graph_layout.addWidget(self.hsv_graph)
-        self.rgb_graph_layout.addWidget(self.rgb_graph)
-
-        self.show()
-
-    def update_plot(self):
-        pass
+    def _update_canvas(self):
+        t = np.linspace(0, 10, 101)
+        # Shift the sinusoid as a function of time.
+        self._line.set_data(t, np.sin(t + time.time()))
+        self._line.figure.canvas.draw()
 
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = MainWindow()
-    sys.exit(app.exec_())
+    # Check whether there is already a running QApplication (e.g., if running
+    # from an IDE).
+    qapp = QtWidgets.QApplication.instance()
+    if not qapp:
+        qapp = QtWidgets.QApplication(sys.argv)
+
+    app = ApplicationWindow()
+    app.show()
+    app.activateWindow()
+    app.raise_()
+    qapp.exec_()
