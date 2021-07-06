@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainLBuwwg.ui'
+## Form generated from reading UI file 'mainXQkpRN.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1640, 960)
+        MainWindow.resize(1115, 645)
         MainWindow.setStyleSheet(u"background-color: rgb(63, 63, 63);")
         MainWindow.setIconSize(QSize(24, 24))
         MainWindow.setAnimated(True)
@@ -296,7 +296,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setBaseSize(QSize(0, 0))
         self.tabWidget.setStyleSheet(u"QTabBar::tab {\n"
 "	 height: 40px;\n"
-"	 width:280px;\n"
+"	 width:167px;\n"
 "	 background: #ff5555;\n"
 "	color: white;\n"
 "	border: 1px solid;\n"
@@ -378,6 +378,153 @@ class Ui_MainWindow(object):
         self.StackedWidget.addWidget(self.color_space_page)
         self.masking_page = QWidget()
         self.masking_page.setObjectName(u"masking_page")
+        self.horizontalLayout_16 = QHBoxLayout(self.masking_page)
+        self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
+        self.masking_page_general_vlayout = QVBoxLayout()
+        self.masking_page_general_vlayout.setObjectName(u"masking_page_general_vlayout")
+        self.mask_top_frame = QFrame(self.masking_page)
+        self.mask_top_frame.setObjectName(u"mask_top_frame")
+        self.mask_top_frame.setMaximumSize(QSize(16777, 80))
+        self.mask_top_frame.setFrameShape(QFrame.StyledPanel)
+        self.mask_top_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_19 = QHBoxLayout(self.mask_top_frame)
+        self.horizontalLayout_19.setObjectName(u"horizontalLayout_19")
+        self.pushButton = QPushButton(self.mask_top_frame)
+        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setMinimumSize(QSize(0, 70))
+        self.pushButton.setMaximumSize(QSize(50, 16777215))
+        icon3 = QIcon()
+        icon3.addFile(u"../../../Desktop/chgk.jpg", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton.setIcon(icon3)
+
+        self.horizontalLayout_19.addWidget(self.pushButton)
+
+        self.pushButton_2 = QPushButton(self.mask_top_frame)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.pushButton_2.setMinimumSize(QSize(0, 70))
+        self.pushButton_2.setMaximumSize(QSize(50, 16777215))
+
+        self.horizontalLayout_19.addWidget(self.pushButton_2)
+
+
+        self.masking_page_general_vlayout.addWidget(self.mask_top_frame)
+
+        self.mask_bottom_frame = QFrame(self.masking_page)
+        self.mask_bottom_frame.setObjectName(u"mask_bottom_frame")
+        self.mask_bottom_frame.setFrameShape(QFrame.StyledPanel)
+        self.mask_bottom_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_17 = QHBoxLayout(self.mask_bottom_frame)
+        self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
+        self.mask_bottom_frame_layout = QHBoxLayout()
+        self.mask_bottom_frame_layout.setObjectName(u"mask_bottom_frame_layout")
+        self.mask_photo_frame = QFrame(self.mask_bottom_frame)
+        self.mask_photo_frame.setObjectName(u"mask_photo_frame")
+        self.mask_photo_frame.setFrameShape(QFrame.StyledPanel)
+        self.mask_photo_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_18 = QHBoxLayout(self.mask_photo_frame)
+        self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
+        self.mask_photo = QLabel(self.mask_photo_frame)
+        self.mask_photo.setObjectName(u"mask_photo")
+        self.mask_photo.setMinimumSize(QSize(450, 0))
+
+        self.horizontalLayout_18.addWidget(self.mask_photo)
+
+
+        self.mask_bottom_frame_layout.addWidget(self.mask_photo_frame)
+
+        self.mask_graph_frame = QFrame(self.mask_bottom_frame)
+        self.mask_graph_frame.setObjectName(u"mask_graph_frame")
+        self.mask_graph_frame.setFrameShape(QFrame.StyledPanel)
+        self.mask_graph_frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_2 = QVBoxLayout(self.mask_graph_frame)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.mask_1_graph_frame = QFrame(self.mask_graph_frame)
+        self.mask_1_graph_frame.setObjectName(u"mask_1_graph_frame")
+        self.mask_1_graph_frame.setFrameShape(QFrame.StyledPanel)
+        self.mask_1_graph_frame.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_2.addWidget(self.mask_1_graph_frame)
+
+        self.mask_1_above_slider = QSlider(self.mask_graph_frame)
+        self.mask_1_above_slider.setObjectName(u"mask_1_above_slider")
+        self.mask_1_above_slider.setMaximum(254)
+        self.mask_1_above_slider.setOrientation(Qt.Horizontal)
+        self.mask_1_above_slider.setTickPosition(QSlider.TicksAbove)
+
+        self.verticalLayout_2.addWidget(self.mask_1_above_slider)
+
+        self.mask_1_below_slider = QSlider(self.mask_graph_frame)
+        self.mask_1_below_slider.setObjectName(u"mask_1_below_slider")
+        self.mask_1_below_slider.setMaximum(255)
+        self.mask_1_below_slider.setSliderPosition(255)
+        self.mask_1_below_slider.setOrientation(Qt.Horizontal)
+        self.mask_1_below_slider.setTickPosition(QSlider.TicksBelow)
+
+        self.verticalLayout_2.addWidget(self.mask_1_below_slider)
+
+        self.mask_2_graph_frame = QFrame(self.mask_graph_frame)
+        self.mask_2_graph_frame.setObjectName(u"mask_2_graph_frame")
+        self.mask_2_graph_frame.setFrameShape(QFrame.StyledPanel)
+        self.mask_2_graph_frame.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_2.addWidget(self.mask_2_graph_frame)
+
+        self.mask_2_above_slider = QSlider(self.mask_graph_frame)
+        self.mask_2_above_slider.setObjectName(u"mask_2_above_slider")
+        self.mask_2_above_slider.setMaximum(255)
+        self.mask_2_above_slider.setOrientation(Qt.Horizontal)
+        self.mask_2_above_slider.setTickPosition(QSlider.TicksAbove)
+
+        self.verticalLayout_2.addWidget(self.mask_2_above_slider)
+
+        self.mask_2_below_slider = QSlider(self.mask_graph_frame)
+        self.mask_2_below_slider.setObjectName(u"mask_2_below_slider")
+        self.mask_2_below_slider.setMaximum(255)
+        self.mask_2_below_slider.setSliderPosition(255)
+        self.mask_2_below_slider.setOrientation(Qt.Horizontal)
+        self.mask_2_below_slider.setTickPosition(QSlider.TicksBelow)
+
+        self.verticalLayout_2.addWidget(self.mask_2_below_slider)
+
+        self.mask_3_graph_frame = QFrame(self.mask_graph_frame)
+        self.mask_3_graph_frame.setObjectName(u"mask_3_graph_frame")
+        self.mask_3_graph_frame.setFrameShape(QFrame.StyledPanel)
+        self.mask_3_graph_frame.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_2.addWidget(self.mask_3_graph_frame)
+
+        self.mask_3_above_slider = QSlider(self.mask_graph_frame)
+        self.mask_3_above_slider.setObjectName(u"mask_3_above_slider")
+        self.mask_3_above_slider.setMaximum(255)
+        self.mask_3_above_slider.setSliderPosition(0)
+        self.mask_3_above_slider.setOrientation(Qt.Horizontal)
+        self.mask_3_above_slider.setTickPosition(QSlider.TicksAbove)
+
+        self.verticalLayout_2.addWidget(self.mask_3_above_slider)
+
+        self.mask_3_below_slider = QSlider(self.mask_graph_frame)
+        self.mask_3_below_slider.setObjectName(u"mask_3_below_slider")
+        self.mask_3_below_slider.setMaximum(255)
+        self.mask_3_below_slider.setValue(255)
+        self.mask_3_below_slider.setSliderPosition(255)
+        self.mask_3_below_slider.setOrientation(Qt.Horizontal)
+        self.mask_3_below_slider.setInvertedAppearance(False)
+        self.mask_3_below_slider.setTickPosition(QSlider.TicksBelow)
+
+        self.verticalLayout_2.addWidget(self.mask_3_below_slider)
+
+
+        self.mask_bottom_frame_layout.addWidget(self.mask_graph_frame)
+
+
+        self.horizontalLayout_17.addLayout(self.mask_bottom_frame_layout)
+
+
+        self.masking_page_general_vlayout.addWidget(self.mask_bottom_frame)
+
+
+        self.horizontalLayout_16.addLayout(self.masking_page_general_vlayout)
+
         self.StackedWidget.addWidget(self.masking_page)
 
         self.horizontalLayout_6.addWidget(self.StackedWidget)
@@ -465,5 +612,8 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.RGB), QCoreApplication.translate("MainWindow", u"RGB", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.HSV), QCoreApplication.translate("MainWindow", u"HSV", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.YUV), QCoreApplication.translate("MainWindow", u"YUV", None))
+        self.pushButton.setText("")
+        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
+        self.mask_photo.setText("")
     # retranslateUi
 
