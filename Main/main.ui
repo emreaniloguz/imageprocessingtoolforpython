@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1115</width>
-    <height>645</height>
+    <height>660</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -485,7 +485,7 @@ QPushButton:hover{
                <number>1</number>
               </property>
               <property name="currentIndex">
-               <number>0</number>
+               <number>1</number>
               </property>
               <widget class="QWidget" name="color_space_page">
                <property name="styleSheet">
@@ -628,21 +628,24 @@ background-color:rgb(41, 41, 41);</string>
                              <height>16777215</height>
                             </size>
                            </property>
+                           <property name="toolTip">
+                            <string>Import</string>
+                           </property>
                            <property name="layoutDirection">
                             <enum>Qt::LeftToRight</enum>
                            </property>
                            <property name="styleSheet">
                             <string notr="true">QPushButton{
 	background-color: none;
-	background-color: rgb(189, 147, 249);
-	border: 5px;
+	background-color:rgb(227, 76, 76);
+	border: 10px;
 	border-radius: 5px;
 	border: rgb(35, 35, 35);
-	font: 8pt &quot;Segoe MDL2 Assets&quot;;
+    color: rgb(225, 225, 225);
+	font: 75 8pt &quot;MS Shell Dlg 2&quot;;
 }
 QPushButton:hover{
-	background-color: rgb(150, 117, 198);
-	color: rgb(220, 220, 220);
+	background-color:rgb(204, 68, 68);
 	
 }</string>
                            </property>
@@ -707,6 +710,7 @@ border: none solid;</string>
                         </property>
                         <property name="styleSheet">
                          <string notr="true">QTabBar::tab {
+	font: 75 8pt &quot;MS Shell Dlg 2&quot;;
 	 height: 40px;
 	 width:167px;
 	 background: #ff5555;
@@ -733,7 +737,7 @@ QTabBar::tab:selected {
 }</string>
                         </property>
                         <property name="currentIndex">
-                         <number>0</number>
+                         <number>1</number>
                         </property>
                         <property name="iconSize">
                          <size>
@@ -881,12 +885,27 @@ QTabBar::tab:selected {
                      <enum>QFrame::Raised</enum>
                     </property>
                     <layout class="QHBoxLayout" name="horizontalLayout_19">
+                     <property name="spacing">
+                      <number>0</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
                      <item>
                       <widget class="QPushButton" name="pushButton">
                        <property name="minimumSize">
                         <size>
-                         <width>0</width>
-                         <height>70</height>
+                         <width>160</width>
+                         <height>40</height>
                         </size>
                        </property>
                        <property name="maximumSize">
@@ -895,12 +914,46 @@ QTabBar::tab:selected {
                          <height>16777215</height>
                         </size>
                        </property>
+                       <property name="acceptDrops">
+                        <bool>false</bool>
+                       </property>
+                       <property name="toolTip">
+                        <string>Mask</string>
+                       </property>
+                       <property name="whatsThis">
+                        <string/>
+                       </property>
+                       <property name="accessibleDescription">
+                        <string/>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QPushButton{
+	background-color: none;
+	background-color:rgb(0, 120, 215);
+	border: 10px;
+	border-radius: 5px;
+	border: rgb(35, 35, 35);
+    color: rgb(225, 225, 225);
+	font: 75 8pt &quot;MS Shell Dlg 2&quot;;
+}
+QPushButton:hover{
+	background-color:rgb(0, 92, 162);
+	color: rgb(220, 220, 220);
+	
+}</string>
+                       </property>
                        <property name="text">
                         <string/>
                        </property>
                        <property name="icon">
                         <iconset>
-                         <normaloff>../../../Desktop/chgk.jpg</normaloff>../../../Desktop/chgk.jpg</iconset>
+                         <normaloff>photo.png</normaloff>photo.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>24</width>
+                         <height>24</height>
+                        </size>
                        </property>
                       </widget>
                      </item>
@@ -908,8 +961,8 @@ QTabBar::tab:selected {
                       <widget class="QPushButton" name="pushButton_2">
                        <property name="minimumSize">
                         <size>
-                         <width>0</width>
-                         <height>70</height>
+                         <width>160</width>
+                         <height>40</height>
                         </size>
                        </property>
                        <property name="maximumSize">
@@ -918,8 +971,37 @@ QTabBar::tab:selected {
                          <height>16777215</height>
                         </size>
                        </property>
+                       <property name="toolTip">
+                        <string>Invert Mask</string>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QPushButton{
+	background-color: none;
+	background-color:rgb(0, 120, 215);
+	border: 10px;
+	border-radius: 5px;
+	border: rgb(35, 35, 35);
+    color: rgb(225, 225, 225);
+	font: 75 8pt &quot;MS Shell Dlg 2&quot;;
+}
+QPushButton:hover{
+	background-color:rgb(0, 92, 162);
+	color: rgb(220, 220, 220);
+	
+}</string>
+                       </property>
                        <property name="text">
-                        <string>PushButton</string>
+                        <string/>
+                       </property>
+                       <property name="icon">
+                        <iconset>
+                         <normaloff>invert_mask.png</normaloff>invert_mask.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>24</width>
+                         <height>24</height>
+                        </size>
                        </property>
                       </widget>
                      </item>
@@ -945,7 +1027,7 @@ QTabBar::tab:selected {
                          <property name="frameShadow">
                           <enum>QFrame::Raised</enum>
                          </property>
-                         <layout class="QHBoxLayout" name="horizontalLayout_18">
+                         <layout class="QVBoxLayout" name="verticalLayout_3">
                           <item>
                            <widget class="QLabel" name="mask_photo">
                             <property name="minimumSize">
@@ -956,6 +1038,46 @@ QTabBar::tab:selected {
                             </property>
                             <property name="text">
                              <string/>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="pushButton_3">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                             <size>
+                              <width>60</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>130</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">QPushButton{
+	background-color: none;
+	background-color:rgb(80,80,80);
+	border: 10px;
+	border-radius: 5px;
+	border: rgb(35, 35, 35);
+    color: rgb(225, 225, 225);
+	font: 75 8pt &quot;MS Shell Dlg 2&quot;;
+}
+QPushButton:hover{
+	background-color:#3f3f3f ;
+	
+}</string>
+                            </property>
+                            <property name="text">
+                             <string>Return to previous page</string>
                             </property>
                            </widget>
                           </item>
