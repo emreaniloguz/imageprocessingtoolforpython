@@ -133,6 +133,9 @@ class MainWindow(QMainWindow):
 
 
         self.ui.pushButton_3.clicked.connect(self.prepare_when_return)
+        self.ui.pushButton_2.clicked.connect(self.invert_mask)
+
+        self.ui.pushButton.clicked.connect(self.export_as_function)
 
 
 
@@ -154,6 +157,8 @@ class MainWindow(QMainWindow):
         except:
             pass
         self.img = img
+        self.unchanged= self.img
+        self.unchanged = cv2.cvtColor(self.unchanged, cv2.COLOR_BGR2RGB)
         img = cv2.resize(img, (np.int(img.shape[1] / scale), np.int(img.shape[0] / scale)),
                          interpolation=cv2.INTER_NEAREST)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -337,6 +342,7 @@ class MainWindow(QMainWindow):
 
 
 
+
     def slider_1(self):
 
         if self.ui.mask_1_above_slider.value()==0:
@@ -391,12 +397,12 @@ class MainWindow(QMainWindow):
 
 
         self.mask = cv2.inRange(self.im_cpy, self.lower_blue, self.upper_blue)
-        self.mask = cv2.bitwise_and(self.im_cpy, self.im_cpy, mask=self.mask)
+        self.normal_mask = cv2.bitwise_and(self.unchanged, self.unchanged, mask=self.mask)
         # self.im_cpy  = cv2.cvtColor(self.im_cpy, cv2.COLOR_BGR2HSV)
-        self.mask = cv2.cvtColor(self.mask, cv2.COLOR_HSV2RGB)
-        height, width, channels = self.mask.shape
+        #self.mask = cv2.cvtColor(self.mask, cv2.COLOR_HSV2RGB)
+        height, width, channels = self.normal_mask.shape
         bpl = 3 * width
-        self.pixmap = QImage(self.mask, width, height, bpl, QImage.Format_RGB888)
+        self.pixmap = QImage(self.normal_mask, width, height, bpl, QImage.Format_RGB888)
         self.pixmap = QPixmap.fromImage(self.pixmap)
         self.pixmap = self.pixmap.scaled(480, 480, Qt.KeepAspectRatio, Qt.FastTransformation)
         self.ui.mask_photo.setPixmap(self.pixmap)
@@ -406,7 +412,73 @@ class MainWindow(QMainWindow):
         self.mask_1_canvas.axes.clear()
         self.mask_2_canvas.axes.clear()
         self.mask_3_canvas.axes.clear()
+        self.ui.mask_1_below_slider.setSliderPosition(255)
+        self.ui.mask_1_above_slider.setSliderPosition(0)
+        self.ui.mask_2_below_slider.setSliderPosition(255)
+        self.ui.mask_2_above_slider.setSliderPosition(0)
+        self.ui.mask_3_below_slider.setSliderPosition(255)
+        self.ui.mask_3_above_slider.setSliderPosition(0)
+
+
+
         self.ui.StackedWidget.setCurrentWidget(self.ui.color_space_page)
+
+
+
+
+
+    def invert_mask(self):
+
+        self.invert_msk =  cv2.bitwise_not(self.mask)
+        self.invert_msk = cv2.bitwise_and(self.unchanged, self.unchanged, mask= self.invert_msk)
+        height, width, channels = self.invert_msk.shape
+        bpl = 3 * width
+        self.pixmap = QImage(self.invert_msk, width, height, bpl, QImage.Format_RGB888)
+        self.pixmap = QPixmap.fromImage(self.pixmap)
+        self.pixmap = self.pixmap.scaled(480, 480, Qt.KeepAspectRatio, Qt.FastTransformation)
+        self.ui.mask_photo.setPixmap(self.pixmap)
+
+
+
+
+
+    def export_as_function(self):
+
+
+        self.function_file = open("C:/Users/emrea/Desktop/image_mask_values.py", 'w')
+
+        self.function_file.write("import numpy as np \nimport cv2 \nimport sys\n \n \n \n")
+        self.function_file.write('original_img = cv2.imread("'+self.path+'"'+")\n")
+
+        self.function_file.write(
+                                 "min_value = np.array(["+str(self.ui.mask_3_above_slider.value())+","+str(self.ui.mask_2_above_slider.value())+","+
+                                 str(self.ui.mask_1_above_slider.value())+"])\n"
+                                 )
+
+        self.function_file.write("max_value = np.array(["+str(self.ui.mask_3_below_slider.value()) + ","+ str(self.ui.mask_2_below_slider.value())+","+
+                                 str(self.ui.mask_1_below_slider.value())+"])\n")
+
+
+        self.function_file.write("masked_range = cv2.inRange(original_img, min_value, max_value)\n")
+
+        self.function_file.write("masked_img = cv2.bitwise_and(original_img, original_img, mask=masked_range)\n")
+
+        self.function_file.write("invert_masked_range= cv2.bitwise_not(masked_range)\n")
+
+
+        self.function_file.write("invert_masked_img = cv2.bitwise_and(original_img, original_img, mask = invert_masked_range)\n")
+
+        self.function_file.write("cv2.imshow('Masked',masked_img)\n")
+        self.function_file.write("cv2.imshow('Invert Masked', invert_masked_img)\n")
+
+        self.function_file.write("if cv2.waitKey(0) & 0xFF == ord('q'):\n \t sys.exit()\n")
+
+        self.function_file.write("cv2.destroyAllWindows()")
+
+        self.function_file.close()
+
+
+
 
 
 
