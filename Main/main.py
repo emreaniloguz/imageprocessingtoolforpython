@@ -18,10 +18,10 @@ import numpy as np
 # IMPORT FUNCTIONS
 class HistCanvas(FigureCanvas):
 
-    def __init__(self, graph_type,parent=None, width=5, height=4, dpi=100,facecolor=(141/255,141/255,141/255,1)):
+    def __init__(self, graph_type,parent=None, width=5, height=4, dpi=100,facecolor=(31/255,31/255,31/255,1)):
         fig = Figure(figsize=(width, height), dpi=dpi,facecolor=facecolor)
         self.axes = fig.add_subplot(111)
-        self.axes.set_facecolor((41 / 255, 41 / 255, 41 / 255, 1))
+        self.axes.set_facecolor((31 / 255, 31 / 255, 31 / 255, 1))
 
         super(HistCanvas, self).__init__(fig)
 
@@ -86,6 +86,26 @@ class MainWindow(QMainWindow):
         self.yuv_layout.addWidget(self.yuv_canvas)
         self.yuv_layout.addWidget(self.yuv_pushbutton)
 
+
+        #
+        self.mask_1_canvas = HistCanvas(0,width=5,height=4,dpi=100)
+        self.mask_2_canvas = HistCanvas(0,width=5,height=4,dpi=100)
+        self.mask_3_canvas = HistCanvas(0)
+        #
+        self.mask_1_layout = QHBoxLayout()
+        self.mask_2_layout = QHBoxLayout()
+        self.mask_3_layout = QHBoxLayout()
+        #
+        self.ui.mask_1_graph_frame.setLayout(self.mask_1_layout)
+        self.ui.mask_2_graph_frame.setLayout(self.mask_2_layout)
+        self.ui.mask_3_graph_frame.setLayout(self.mask_3_layout)
+        #
+        self.mask_1_layout.addWidget(self.mask_1_canvas)
+        self.mask_2_layout.addWidget(self.mask_2_canvas)
+        self.mask_3_layout.addWidget(self.mask_3_canvas)
+
+
+
         #Import Image
         self.ui.import_button.clicked.connect(self.import_button_clicked)
 
@@ -96,7 +116,8 @@ class MainWindow(QMainWindow):
 
 
         #self.rgb_pushbutton.clicked.connect(lambda: self.ui.StackedWidget.setCurrentWidget(self.ui.masking_page))
-        self.rgb_pushbutton.clicked.connect(self.prepare_mask_page)
+        self.rgb_pushbutton.clicked.connect(self.prepare_rgb_mask_page)
+        self.hsv_pushbutton.clicked.connect(self.prepare_hsv_mask_page)
 
 
         self.ui.mask_1_above_slider.valueChanged.connect(self.slider_1)
@@ -108,6 +129,10 @@ class MainWindow(QMainWindow):
 
         self.ui.mask_3_above_slider.valueChanged.connect(self.slider_3)
         self.ui.mask_3_below_slider.valueChanged.connect(self.slider_3)
+
+
+
+        self.ui.pushButton_3.clicked.connect(self.prepare_when_return)
 
 
 
@@ -124,17 +149,19 @@ class MainWindow(QMainWindow):
         try:
             img_path = self.path
             img = cv2.imread(img_path)
-            scale = max(img.shape[0], img.shape[1], 256) / 256  # at most 64 rows and columns
+
+            scale = max(img.shape[0], img.shape[1], 128) / 128  # at most 64 rows and columns
         except:
             pass
-
-        self.img = cv2.resize(img, (np.int(img.shape[1] / scale), np.int(img.shape[0] / scale)),
+        self.img = img
+        img = cv2.resize(img, (np.int(img.shape[1] / scale), np.int(img.shape[0] / scale)),
                          interpolation=cv2.INTER_NEAREST)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        img_rgb = img / 255
 
         if self.graph_type == 0:
 
-            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-            img_rgb = img / 255
+
 
 
             self.canvas.axes.clear()
@@ -197,9 +224,13 @@ class MainWindow(QMainWindow):
         self.ui.photo.setPixmap(self.pixmap)
 
 
+
+
         self.update_plot(0)
         self.update_plot(1)
         self.update_plot(2)
+
+
 
 
     def create_buttons(self):
@@ -207,9 +238,7 @@ class MainWindow(QMainWindow):
         self.hsv_pushbutton = QPushButton("Choose HSV")
         self.yuv_pushbutton = QPushButton("Choose YUV")
 
-
-
-        pass
+        #pass
 
     def prepare_stylesheets(self,button):
         button.setStyleSheet("""QPushButton{
@@ -227,59 +256,83 @@ class MainWindow(QMainWindow):
                 }""")
 
 
-    def prepare_mask_page(self):
+    def prepare_rgb_mask_page(self):
+
         self.ui.StackedWidget.setCurrentWidget(self.ui.masking_page)
-        self.ui.masking_page.resize(1680,720)
         self.ui.mask_photo.setPixmap(self.pixmap)
 
-
-        self.mask_1_canvas = HistCanvas(0,width=5,height=4,dpi=100)
-        self.mask_2_canvas = HistCanvas(0,width=5,height=4,dpi=100)
-        self.mask_3_canvas = HistCanvas(0)
         #
-        self.mask_1_layout = QHBoxLayout()
-        self.mask_2_layout = QHBoxLayout()
-        self.mask_3_layout = QHBoxLayout()
+        self.update_mask_plot(0,0)
+        self.update_mask_plot(1,0)
+        self.update_mask_plot(2,0)
+
+    def prepare_hsv_mask_page(self):
+        self.ui.StackedWidget.setCurrentWidget(self.ui.masking_page)
+        self.ui.mask_photo.setPixmap(self.pixmap)
         #
-        self.ui.mask_1_graph_frame.setLayout(self.mask_1_layout)
-        self.ui.mask_2_graph_frame.setLayout(self.mask_2_layout)
-        self.ui.mask_3_graph_frame.setLayout(self.mask_3_layout)
-        #
-        self.mask_1_layout.addWidget(self.mask_1_canvas)
-        self.mask_2_layout.addWidget(self.mask_2_canvas)
-        self.mask_3_layout.addWidget(self.mask_3_canvas)
 
-        self.update_mask_plot(0)
-        self.update_mask_plot(1)
-        self.update_mask_plot(2)
+        self.update_mask_plot(0,1)
+        self.update_mask_plot(1,1)
+        self.update_mask_plot(2,1)
 
 
+    def update_mask_plot(self,graph_type,color_space):
 
-    def update_mask_plot(self,graph_type):
-        self.graph_type = graph_type
-        self.img = cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB)
+        if color_space == 0:
 
-        self.img_rgb = self.img / 255
+            self.graph_type = graph_type
+            self.img = cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB)
 
-        if self.graph_type == 0:
+            self.img_rgb = self.img / 255
 
-            self.mask_1_canvas.axes.clear()
-            self.histr = cv2.calcHist([self.img], [0], None, [256], [0, 256])
-            self.mask_1_canvas.axes.plot(self.histr, color='r')
-            self.mask_1_canvas.draw()
+            if self.graph_type == 0:
 
-
-        elif self.graph_type==1:
-
-
-            self.histr_g = cv2.calcHist([self.img], [1], None, [256], [0, 256])
-            self.mask_2_canvas.axes.plot(self.histr_g, color='g')
+                self.mask_1_canvas.axes.clear()
+                self.histr = cv2.calcHist([self.img], [0], None, [256], [0, 256])
+                self.mask_1_canvas.axes.plot(self.histr, color='r')
+                self.mask_1_canvas.draw()
 
 
-        elif self.graph_type==2:
+            elif self.graph_type==1:
 
-            self.histr_b = cv2.calcHist([self.img], [2], None, [256], [0, 256])
-            self.mask_3_canvas.axes.plot(self.histr_b, color='b')
+                self.mask_2_canvas.axes.clear()
+                self.histr_g = cv2.calcHist([self.img], [1], None, [256], [0, 256])
+                self.mask_2_canvas.axes.plot(self.histr_g, color='g')
+                self.mask_2_canvas.draw()
+
+            elif self.graph_type==2:
+
+                self.mask_3_canvas.axes.clear()
+                self.histr_b = cv2.calcHist([self.img], [2], None, [256], [0, 256])
+                self.mask_3_canvas.axes.plot(self.histr_b, color='b')
+                self.mask_3_canvas.draw()
+        if color_space == 1:
+            self.graph_type = graph_type
+            self.img = cv2.cvtColor(self.img, cv2.COLOR_BGR2HSV)
+
+            self.img_rgb = self.img / 255
+
+            if self.graph_type == 0:
+
+                self.mask_1_canvas.axes.clear()
+                self.histr = cv2.calcHist([self.img], [0], None, [256], [0, 256])
+                self.mask_1_canvas.axes.plot(self.histr, color='r')
+                self.mask_1_canvas.draw()
+
+
+            elif self.graph_type == 1:
+
+                self.mask_2_canvas.axes.clear()
+                self.histr_g = cv2.calcHist([self.img], [1], None, [256], [0, 256])
+                self.mask_2_canvas.axes.plot(self.histr_g, color='g')
+                self.mask_2_canvas.draw()
+
+            elif self.graph_type == 2:
+
+                self.mask_3_canvas.axes.clear()
+                self.histr_b = cv2.calcHist([self.img], [2], None, [256], [0, 256])
+                self.mask_3_canvas.axes.plot(self.histr_b, color='b')
+                self.mask_3_canvas.draw()
 
 
 
@@ -315,7 +368,9 @@ class MainWindow(QMainWindow):
     def slider_3(self):
         if self.ui.mask_3_above_slider.value()==0:
             pass
+
         else:
+
             self.mask_3_canvas.axes.clear()
             self.mask_3_canvas.axes.plot(self.histr_b, color='b')
             self.mask_3_canvas.axes.axvline(self.ui.mask_3_above_slider.value(), 0, 255)
@@ -333,17 +388,25 @@ class MainWindow(QMainWindow):
         self.upper_blue = np.array([self.ui.mask_1_below_slider.value(), self.ui.mask_2_below_slider.value(), self.ui.mask_3_below_slider.value()])
 
 
-        # Define the masked area
+
 
         self.mask = cv2.inRange(self.im_cpy, self.lower_blue, self.upper_blue)
         self.mask = cv2.bitwise_and(self.im_cpy, self.im_cpy, mask=self.mask)
         # self.im_cpy  = cv2.cvtColor(self.im_cpy, cv2.COLOR_BGR2HSV)
+        self.mask = cv2.cvtColor(self.mask, cv2.COLOR_HSV2RGB)
         height, width, channels = self.mask.shape
         bpl = 3 * width
         self.pixmap = QImage(self.mask, width, height, bpl, QImage.Format_RGB888)
         self.pixmap = QPixmap.fromImage(self.pixmap)
-        self.pixmap = self.pixmap.scaled(720, 720, Qt.KeepAspectRatio, Qt.FastTransformation)
+        self.pixmap = self.pixmap.scaled(480, 480, Qt.KeepAspectRatio, Qt.FastTransformation)
         self.ui.mask_photo.setPixmap(self.pixmap)
+
+
+    def prepare_when_return(self):
+        self.mask_1_canvas.axes.clear()
+        self.mask_2_canvas.axes.clear()
+        self.mask_3_canvas.axes.clear()
+        self.ui.StackedWidget.setCurrentWidget(self.ui.color_space_page)
 
 
 

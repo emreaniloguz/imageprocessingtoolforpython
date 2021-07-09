@@ -180,24 +180,6 @@ class MainWindow(QMainWindow):
 
 
 
-    def update_pixmap(self): 
-        self.im_cpy = self.img
-        self.lower_blue = np.array(
-            [self.ui.rSlider_a.value(), self.ui.horizontalSlider_2.value(), self.ui.bSlider_a.value()])
-        self.upper_blue = np.array([self.ui.rSlider.value(), self.ui.gSlider.value(), self.ui.bSlider.value()])
-
-
-        # Define the masked area
-
-        self.mask = cv2.inRange(self.im_cpy, self.lower_blue, self.upper_blue)
-        self.mask = cv2.bitwise_and(self.im_cpy, self.im_cpy, mask=self.mask)
-        # self.im_cpy  = cv2.cvtColor(self.im_cpy, cv2.COLOR_BGR2HSV)
-        height, width, channels = self.mask.shape
-        bpl = 3 * width
-        self.pixmap = QImage(self.mask, width, height, bpl, QImage.Format_RGB888)
-        self.pixmap = QPixmap.fromImage(self.pixmap)
-        self.pixmap = self.pixmap.scaled(720, 720, Qt.KeepAspectRatio, Qt.FastTransformation)
-        self.ui.label.setPixmap(self.pixmap)
 
 
     def invert_mask(self):

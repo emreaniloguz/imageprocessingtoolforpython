@@ -485,7 +485,7 @@ QPushButton:hover{
                <number>1</number>
               </property>
               <property name="currentIndex">
-               <number>1</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="color_space_page">
                <property name="styleSheet">
@@ -1034,6 +1034,12 @@ QPushButton:hover{
                              <size>
                               <width>450</width>
                               <height>0</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>480</width>
+                              <height>480</height>
                              </size>
                             </property>
                             <property name="text">

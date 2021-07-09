@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainXQkpRN.ui'
+## Form generated from reading UI file 'mainSymHWI.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1115, 645)
+        MainWindow.resize(1115, 660)
         MainWindow.setStyleSheet(u"background-color: rgb(63, 63, 63);")
         MainWindow.setIconSize(QSize(24, 24))
         MainWindow.setAnimated(True)
@@ -255,15 +255,15 @@ class Ui_MainWindow(object):
         self.import_button.setLayoutDirection(Qt.LeftToRight)
         self.import_button.setStyleSheet(u"QPushButton{\n"
 "	background-color: none;\n"
-"	background-color: rgb(189, 147, 249);\n"
-"	border: 5px;\n"
+"	background-color:rgb(252, 84, 84);\n"
+"	border: 10px;\n"
 "	border-radius: 5px;\n"
 "	border: rgb(35, 35, 35);\n"
-"	font: 8pt \"Segoe MDL2 Assets\";\n"
+"    color: rgb(225, 225, 225);\n"
+"	font: 75 8pt \"MS Shell Dlg 2\";\n"
 "}\n"
 "QPushButton:hover{\n"
-"	background-color: rgb(150, 117, 198);\n"
-"	color: rgb(220, 220, 220);\n"
+"	background-color:rgb(204, 68, 68);\n"
 "	\n"
 "}")
 
@@ -295,6 +295,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setSizePolicy(sizePolicy1)
         self.tabWidget.setBaseSize(QSize(0, 0))
         self.tabWidget.setStyleSheet(u"QTabBar::tab {\n"
+"	font: 75 8pt \"MS Shell Dlg 2\";\n"
 "	 height: 40px;\n"
 "	 width:167px;\n"
 "	 background: #ff5555;\n"
@@ -388,21 +389,57 @@ class Ui_MainWindow(object):
         self.mask_top_frame.setFrameShape(QFrame.StyledPanel)
         self.mask_top_frame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_19 = QHBoxLayout(self.mask_top_frame)
+        self.horizontalLayout_19.setSpacing(0)
         self.horizontalLayout_19.setObjectName(u"horizontalLayout_19")
+        self.horizontalLayout_19.setContentsMargins(0, 0, 0, 0)
         self.pushButton = QPushButton(self.mask_top_frame)
         self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setMinimumSize(QSize(0, 70))
+        self.pushButton.setMinimumSize(QSize(160, 40))
         self.pushButton.setMaximumSize(QSize(50, 16777215))
+        self.pushButton.setAcceptDrops(False)
+        self.pushButton.setStyleSheet(u"QPushButton{\n"
+"	background-color: none;\n"
+"	background-color:rgb(0, 120, 215);\n"
+"	border: 10px;\n"
+"	border-radius: 5px;\n"
+"	border: rgb(35, 35, 35);\n"
+"    color: rgb(225, 225, 225);\n"
+"	font: 75 8pt \"MS Shell Dlg 2\";\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color:rgb(0, 92, 162);\n"
+"	color: rgb(220, 220, 220);\n"
+"	\n"
+"}")
         icon3 = QIcon()
-        icon3.addFile(u"../../../Desktop/chgk.jpg", QSize(), QIcon.Normal, QIcon.Off)
+        icon3.addFile(u"photo.png", QSize(), QIcon.Normal, QIcon.Off)
         self.pushButton.setIcon(icon3)
+        self.pushButton.setIconSize(QSize(24, 24))
 
         self.horizontalLayout_19.addWidget(self.pushButton)
 
         self.pushButton_2 = QPushButton(self.mask_top_frame)
         self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setMinimumSize(QSize(0, 70))
+        self.pushButton_2.setMinimumSize(QSize(160, 40))
         self.pushButton_2.setMaximumSize(QSize(50, 16777215))
+        self.pushButton_2.setStyleSheet(u"QPushButton{\n"
+"	background-color: none;\n"
+"	background-color:rgb(0, 120, 215);\n"
+"	border: 10px;\n"
+"	border-radius: 5px;\n"
+"	border: rgb(35, 35, 35);\n"
+"    color: rgb(225, 225, 225);\n"
+"	font: 75 8pt \"MS Shell Dlg 2\";\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color:rgb(0, 92, 162);\n"
+"	color: rgb(220, 220, 220);\n"
+"	\n"
+"}")
+        icon4 = QIcon()
+        icon4.addFile(u"invert_mask.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_2.setIcon(icon4)
+        self.pushButton_2.setIconSize(QSize(24, 24))
 
         self.horizontalLayout_19.addWidget(self.pushButton_2)
 
@@ -421,13 +458,43 @@ class Ui_MainWindow(object):
         self.mask_photo_frame.setObjectName(u"mask_photo_frame")
         self.mask_photo_frame.setFrameShape(QFrame.StyledPanel)
         self.mask_photo_frame.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_18 = QHBoxLayout(self.mask_photo_frame)
-        self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
+        self.verticalLayout_3 = QVBoxLayout(self.mask_photo_frame)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.mask_photo = QLabel(self.mask_photo_frame)
         self.mask_photo.setObjectName(u"mask_photo")
         self.mask_photo.setMinimumSize(QSize(450, 0))
+        self.mask_photo.setMaximumSize(QSize(480, 480))
 
-        self.horizontalLayout_18.addWidget(self.mask_photo)
+        self.verticalLayout_3.addWidget(self.mask_photo)
+
+        self.pushButton_3 = QPushButton(self.mask_photo_frame)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.pushButton_3.sizePolicy().hasHeightForWidth())
+        self.pushButton_3.setSizePolicy(sizePolicy2)
+        self.pushButton_3.setMinimumSize(QSize(60, 30))
+        self.pushButton_3.setMaximumSize(QSize(60, 16777215))
+        self.pushButton_3.setStyleSheet(u"QPushButton{\n"
+"	background-color: none;\n"
+"	background-color:rgb(80,80,80);\n"
+"	border: 10px;\n"
+"	border-radius: 5px;\n"
+"	border: rgb(35, 35, 35);\n"
+"    color: rgb(225, 225, 225);\n"
+"	font: 75 8pt \"MS Shell Dlg 2\";\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color:#3f3f3f ;\n"
+"	\n"
+"}")
+        icon5 = QIcon()
+        icon5.addFile(u"previous.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_3.setIcon(icon5)
+        self.pushButton_3.setIconSize(QSize(18, 18))
+
+        self.verticalLayout_3.addWidget(self.pushButton_3)
 
 
         self.mask_bottom_frame_layout.addWidget(self.mask_photo_frame)
@@ -553,7 +620,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.StackedWidget.setCurrentIndex(0)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -605,6 +672,9 @@ class Ui_MainWindow(object):
         self.StackedWidget.setAccessibleDescription("")
 #endif // QT_CONFIG(accessibility)
         self.photo.setText("")
+#if QT_CONFIG(tooltip)
+        self.import_button.setToolTip(QCoreApplication.translate("MainWindow", u"Import", None))
+#endif // QT_CONFIG(tooltip)
         self.import_button.setText(QCoreApplication.translate("MainWindow", u"Import Image ", None))
 #if QT_CONFIG(tooltip)
         self.tabWidget.setToolTip("")
@@ -612,8 +682,24 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.RGB), QCoreApplication.translate("MainWindow", u"RGB", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.HSV), QCoreApplication.translate("MainWindow", u"HSV", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.YUV), QCoreApplication.translate("MainWindow", u"YUV", None))
+#if QT_CONFIG(tooltip)
+        self.pushButton.setToolTip(QCoreApplication.translate("MainWindow", u"Mask", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(whatsthis)
+        self.pushButton.setWhatsThis("")
+#endif // QT_CONFIG(whatsthis)
+#if QT_CONFIG(accessibility)
+        self.pushButton.setAccessibleDescription("")
+#endif // QT_CONFIG(accessibility)
         self.pushButton.setText("")
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
+#if QT_CONFIG(tooltip)
+        self.pushButton_2.setToolTip(QCoreApplication.translate("MainWindow", u"Invert Mask", None))
+#endif // QT_CONFIG(tooltip)
+        self.pushButton_2.setText("")
         self.mask_photo.setText("")
+        self.pushButton_3.setText("")
+#if QT_CONFIG(shortcut)
+        self.pushButton_3.setShortcut(QCoreApplication.translate("MainWindow", u"Backspace", None))
+#endif // QT_CONFIG(shortcut)
     # retranslateUi
 
