@@ -59,6 +59,7 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint) #Remove title bar
 
         self.canvas = MplCanvas(0,width=5, height=4, dpi=100)
         self.hsv_canvas = MplCanvas(1, width=5, height=4, dpi=100)
@@ -137,6 +138,8 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_2.clicked.connect(self.invert_mask)
 
         self.ui.pushButton.clicked.connect(self.export_as_function)
+
+        self.ui.exit_button.clicked.connect(lambda: self.close())
 
 
 
@@ -248,18 +251,18 @@ class MainWindow(QMainWindow):
 
     def prepare_stylesheets(self,button):
         button.setStyleSheet("""QPushButton{
-                	background-color: none;
-                	background-color: rgb(189, 147, 249);
-                	border: 5px;
-                	border-radius: 5px;
-                	border: rgb(35, 35, 35);
-                	font: 8pt "Segoe MDL2 Assets";
-                }
-                QPushButton:hover{
-                	background-color: rgb(150, 117, 198);
-                	color: rgb(220, 220, 220);
-
-                }""")
+                background-color: none;
+                background-color:rgb(80,80,80);
+                border: 10px;
+                border-radius: 5px;
+                border: rgb(35, 35, 35);
+                color: rgb(225, 225, 225);
+                font: 75 8pt "MS Shell Dlg 2";
+            }
+            QPushButton:hover{
+                background-color:#3f3f3f ;
+                
+            }""")
 
 
     def prepare_rgb_mask_page(self):

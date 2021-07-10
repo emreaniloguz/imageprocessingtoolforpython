@@ -94,6 +94,6 @@ class Ui_SplashScreen(object):
         self.Image_processing.setText(QCoreApplication.translate("SplashScreen", u"Image Processing \n"
 " Tool", None))
         self.percent.setText(QCoreApplication.translate("SplashScreen", u"<html><head/><body><p><span style=\" font-size:48pt;\">0</span><span style=\" font-size:26pt;\">%</span></p></body></html>", None))
-        self.creators.setText(QCoreApplication.translate("SplashScreen", u"<strong>By</strong> Rabia E. \u00c7elik & Emre A. O\u011fuz", None))
+        self.creators.setText(QCoreApplication.translate("SplashScreen", u"Rabia E. \u00c7elik & Emre A. O\u011fuz", None))
     # retranslateUi
 
