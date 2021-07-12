@@ -24,6 +24,7 @@ class HistCanvas(FigureCanvas):
         self.axes = fig.add_subplot(111)
         self.axes.set_facecolor((31 / 255, 31 / 255, 31 / 255, 1))
 
+
         super(HistCanvas, self).__init__(fig)
 
 class MplCanvas(FigureCanvas):
@@ -140,15 +141,29 @@ class MainWindow(QMainWindow):
         self.ui.pushButton.clicked.connect(self.export_as_function)
 
         self.ui.exit_button.clicked.connect(lambda: self.close())
+        self.ui.minimize_button.clicked.connect(lambda: self.showMinimized())
+        self.ui.maximize_button.clicked.connect(lambda: self.restore_or_maximize_window())
 
+        def move_window(e): #to moving window
+            if self.isMaximized() == False:         #If page is maximized, it stays stable
+                if e.buttons() == Qt.LeftButton:
+                    # Move window
+                    self.move(self.pos() + e.globalPos() - self.clickPosition)
+                    self.clickPosition = e.globalPos()
+                    e.accept()
 
-
-
-
-
-
+        self.ui.header.mouseMoveEvent = move_window
 
         self.show()
+
+    def restore_or_maximize_window(self):
+        if self.isMaximized():
+            self.showNormal()
+        else:
+            self.showMaximized()
+
+    def mousePressEvent(self, event):
+        self.clickPosition = event.globalPos()
 
 
     def update_plot(self,graph_type):

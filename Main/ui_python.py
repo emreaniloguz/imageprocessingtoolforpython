@@ -18,6 +18,7 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1115, 660)
+
         MainWindow.setStyleSheet(u"background-color: rgb(63, 63, 63);")
         MainWindow.setIconSize(QSize(24, 24))
         MainWindow.setAnimated(True)
