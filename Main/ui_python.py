@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainSymHWI.ui'
+## Form generated from reading UI file 'mainygRMUl.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1115, 660)
+        MainWindow.resize(1115, 650)
 
         MainWindow.setStyleSheet(u"background-color: rgb(63, 63, 63);")
         MainWindow.setIconSize(QSize(24, 24))
@@ -97,7 +97,7 @@ class Ui_MainWindow(object):
 "	background-color: rgb(76, 76, 76);\n"
 "}")
         icon = QIcon()
-        icon.addFile(u"../../../Desktop/line.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/line.png", QSize(), QIcon.Normal, QIcon.Off)
         self.minimize_button.setIcon(icon)
         self.minimize_button.setIconSize(QSize(14, 16))
 
@@ -132,7 +132,7 @@ class Ui_MainWindow(object):
 "	background-color: rgb(76, 76, 76);\n"
 "}")
         icon1 = QIcon()
-        icon1.addFile(u"../../../Desktop/square.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon1.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/square.png", QSize(), QIcon.Normal, QIcon.Off)
         self.maximize_button.setIcon(icon1)
         self.maximize_button.setIconSize(QSize(12, 12))
 
@@ -161,7 +161,7 @@ class Ui_MainWindow(object):
 "	background-color: rgb(255, 45, 30);\n"
 "}")
         icon2 = QIcon()
-        icon2.addFile(u"../../../Desktop/\u00e7\u0131k\u0131\u015f.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon2.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/previous.png", QSize(), QIcon.Normal, QIcon.Off)
         self.exit_button.setIcon(icon2)
         self.exit_button.setIconSize(QSize(10, 10))
         self.exit_button.setAutoDefault(False)
@@ -298,10 +298,11 @@ class Ui_MainWindow(object):
         self.tabWidget.setStyleSheet(u"QTabBar::tab {\n"
 "	font: 75 8pt \"MS Shell Dlg 2\";\n"
 "	 height: 40px;\n"
-"	 width:167px;\n"
+"	 width:163px;\n"
 "	 background: #ff5555;\n"
 "	color: white;\n"
 "	border: 1px solid;\n"
+"    border-radius: 5px;\n"
 "\n"
 "}\n"
 "\n"
@@ -393,12 +394,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_19.setSpacing(0)
         self.horizontalLayout_19.setObjectName(u"horizontalLayout_19")
         self.horizontalLayout_19.setContentsMargins(0, 0, 0, 0)
-        self.pushButton = QPushButton(self.mask_top_frame)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setMinimumSize(QSize(160, 40))
-        self.pushButton.setMaximumSize(QSize(50, 16777215))
-        self.pushButton.setAcceptDrops(False)
-        self.pushButton.setStyleSheet(u"QPushButton{\n"
+        self.mask_btn = QPushButton(self.mask_top_frame)
+        self.mask_btn.setObjectName(u"mask_btn")
+        self.mask_btn.setMinimumSize(QSize(160, 40))
+        self.mask_btn.setMaximumSize(QSize(50, 16777215))
+        self.mask_btn.setAcceptDrops(False)
+        self.mask_btn.setStyleSheet(u"QPushButton{\n"
 "	background-color: none;\n"
 "	background-color:rgb(0, 120, 215);\n"
 "	border: 10px;\n"
@@ -413,17 +414,17 @@ class Ui_MainWindow(object):
 "	\n"
 "}")
         icon3 = QIcon()
-        icon3.addFile(u"photo.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton.setIcon(icon3)
-        self.pushButton.setIconSize(QSize(24, 24))
+        icon3.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/photo.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.mask_btn.setIcon(icon3)
+        self.mask_btn.setIconSize(QSize(24, 24))
 
-        self.horizontalLayout_19.addWidget(self.pushButton)
+        self.horizontalLayout_19.addWidget(self.mask_btn)
 
-        self.pushButton_2 = QPushButton(self.mask_top_frame)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setMinimumSize(QSize(160, 40))
-        self.pushButton_2.setMaximumSize(QSize(50, 16777215))
-        self.pushButton_2.setStyleSheet(u"QPushButton{\n"
+        self.invert_mask_btn = QPushButton(self.mask_top_frame)
+        self.invert_mask_btn.setObjectName(u"invert_mask_btn")
+        self.invert_mask_btn.setMinimumSize(QSize(160, 40))
+        self.invert_mask_btn.setMaximumSize(QSize(50, 16777215))
+        self.invert_mask_btn.setStyleSheet(u"QPushButton{\n"
 "	background-color: none;\n"
 "	background-color:rgb(0, 120, 215);\n"
 "	border: 10px;\n"
@@ -438,11 +439,68 @@ class Ui_MainWindow(object):
 "	\n"
 "}")
         icon4 = QIcon()
-        icon4.addFile(u"invert_mask.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_2.setIcon(icon4)
-        self.pushButton_2.setIconSize(QSize(24, 24))
+        icon4.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/invert_mask.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.invert_mask_btn.setIcon(icon4)
+        self.invert_mask_btn.setIconSize(QSize(24, 24))
 
-        self.horizontalLayout_19.addWidget(self.pushButton_2)
+        self.horizontalLayout_19.addWidget(self.invert_mask_btn)
+
+        self.contour_btn = QPushButton(self.mask_top_frame)
+        self.contour_btn.setObjectName(u"contour_btn")
+        self.contour_btn.setMinimumSize(QSize(160, 40))
+        self.contour_btn.setMaximumSize(QSize(160, 16777215))
+        self.contour_btn.setStyleSheet(u"QPushButton{\n"
+"	background-color: none;\n"
+"	background-color:rgb(0, 120, 215);\n"
+"	border: 10px;\n"
+"	border-radius: 5px;\n"
+"	border: rgb(35, 35, 35);\n"
+"    color: rgb(225, 225, 225);\n"
+"	font: 75 8pt \"MS Shell Dlg 2\";\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color:rgb(0, 92, 162);\n"
+"	color: rgb(220, 220, 220);\n"
+"	\n"
+"}")
+        icon5 = QIcon()
+        icon5.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/contour.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.contour_btn.setIcon(icon5)
+        self.contour_btn.setIconSize(QSize(24, 24))
+
+        self.horizontalLayout_19.addWidget(self.contour_btn)
+
+        self.export_btn = QPushButton(self.mask_top_frame)
+        self.export_btn.setObjectName(u"export_btn")
+        self.export_btn.setMinimumSize(QSize(40, 40))
+        self.export_btn.setMaximumSize(QSize(160, 16777215))
+        font1 = QFont()
+        font1.setFamily(u"MS Shell Dlg 2")
+        font1.setPointSize(8)
+        font1.setBold(False)
+        font1.setItalic(False)
+        font1.setWeight(9)
+        self.export_btn.setFont(font1)
+        self.export_btn.setStyleSheet(u"QPushButton{\n"
+"	background-color: none;\n"
+"	background-color:rgb(0, 120, 215);\n"
+"	border: 10px;\n"
+"	border-radius: 5px;\n"
+"	border: rgb(35, 35, 35);\n"
+"    color: rgb(225, 225, 225);\n"
+"	font: 75 8pt \"MS Shell Dlg 2\";\n"
+"}\n"
+"QPushButton:hover{\n"
+"	background-color:rgb(0, 92, 162);\n"
+"	color: rgb(220, 220, 220);\n"
+"	\n"
+"}")
+        icon6 = QIcon()
+        icon6.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/export.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.export_btn.setIcon(icon6)
+        self.export_btn.setIconSize(QSize(23, 23))
+
+        self.horizontalLayout_19.addWidget(self.export_btn)
 
 
         self.masking_page_general_vlayout.addWidget(self.mask_top_frame)
@@ -490,9 +548,9 @@ class Ui_MainWindow(object):
 "	background-color:#3f3f3f ;\n"
 "	\n"
 "}")
-        icon5 = QIcon()
-        icon5.addFile(u"previous.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_3.setIcon(icon5)
+        icon7 = QIcon()
+        icon7.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/previous.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_3.setIcon(icon7)
         self.pushButton_3.setIconSize(QSize(18, 18))
 
         self.verticalLayout_3.addWidget(self.pushButton_3)
@@ -621,7 +679,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.StackedWidget.setCurrentIndex(0)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -684,19 +742,27 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.HSV), QCoreApplication.translate("MainWindow", u"HSV", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.YUV), QCoreApplication.translate("MainWindow", u"YUV", None))
 #if QT_CONFIG(tooltip)
-        self.pushButton.setToolTip(QCoreApplication.translate("MainWindow", u"Mask", None))
+        self.mask_btn.setToolTip(QCoreApplication.translate("MainWindow", u"Mask", None))
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(whatsthis)
-        self.pushButton.setWhatsThis("")
+        self.mask_btn.setWhatsThis("")
 #endif // QT_CONFIG(whatsthis)
 #if QT_CONFIG(accessibility)
-        self.pushButton.setAccessibleDescription("")
+        self.mask_btn.setAccessibleDescription("")
 #endif // QT_CONFIG(accessibility)
-        self.pushButton.setText("")
+        self.mask_btn.setText("")
 #if QT_CONFIG(tooltip)
-        self.pushButton_2.setToolTip(QCoreApplication.translate("MainWindow", u"Invert Mask", None))
+        self.invert_mask_btn.setToolTip(QCoreApplication.translate("MainWindow", u"Invert Mask", None))
 #endif // QT_CONFIG(tooltip)
-        self.pushButton_2.setText("")
+        self.invert_mask_btn.setText("")
+#if QT_CONFIG(tooltip)
+        self.contour_btn.setToolTip(QCoreApplication.translate("MainWindow", u"Contour", None))
+#endif // QT_CONFIG(tooltip)
+        self.contour_btn.setText("")
+#if QT_CONFIG(tooltip)
+        self.export_btn.setToolTip(QCoreApplication.translate("MainWindow", u"Export", None))
+#endif // QT_CONFIG(tooltip)
+        self.export_btn.setText("")
         self.mask_photo.setText("")
         self.pushButton_3.setText("")
 #if QT_CONFIG(shortcut)

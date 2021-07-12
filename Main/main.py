@@ -61,6 +61,8 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+
+
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint) #Remove title bar
 
         self.canvas = MplCanvas(0,width=5, height=4, dpi=100)
@@ -110,6 +112,7 @@ class MainWindow(QMainWindow):
 
 
 
+
         #Import Image
         self.ui.import_button.clicked.connect(self.import_button_clicked)
 
@@ -137,10 +140,10 @@ class MainWindow(QMainWindow):
 
 
         self.ui.pushButton_3.clicked.connect(self.prepare_when_return)
-        self.ui.pushButton_2.clicked.connect(self.invert_mask)
-
-        self.ui.pushButton.clicked.connect(self.export_as_function)
-
+        self.ui.invert_mask_btn.clicked.connect(self.invert_mask)
+        self.ui.mask_btn.clicked.connect(self.update_pixmap)
+        self.ui.export_btn.clicked.connect(self.export_as_function)
+        self.ui.contour_btn.clicked.connect(self.apply_contour)
         self.ui.exit_button.clicked.connect(lambda: self.close())
         self.ui.minimize_button.clicked.connect(lambda: self.showMinimized())
         self.ui.maximize_button.clicked.connect(lambda: self.restore_or_maximize_window())
@@ -458,6 +461,27 @@ class MainWindow(QMainWindow):
         self.pixmap = self.pixmap.scaled(480, 480, Qt.KeepAspectRatio, Qt.FastTransformation)
         self.ui.mask_photo.setPixmap(self.pixmap)
 
+    def apply_contour(self):
+
+        if self.invert_msk == None:
+            im2, contours, hierarchy = cv2.findContours(self.pixmap, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+            cv2.drawContours(self.normal_mask, contours, -1, (0, 255, 0), 3)
+            height, width, channels = self.normal_mask.shape
+            bpl = 3 * width
+            self.pixmap = QImage(self.normal_mask, width, height, bpl, QImage.Format_RGB888)
+            self.pixmap = QPixmap.fromImage(self.pixmap)
+            self.pixmap = self.pixmap.scaled(480, 480, Qt.KeepAspectRatio, Qt.FastTransformation)
+            self.ui.mask_photo.setPixmap(self.pixmap)
+
+        elif self.normal_mask == None:
+            im2, contours, hierarchy = cv2.findContours(self.pixmap, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+            cv2.drawContours(self.invert_msk, contours, -1, (0, 255, 0), 3)
+            height, width, channels = self.invert_msk.shape
+            bpl = 3 * width
+            self.pixmap = QImage(self.invert_msk, width, height, bpl, QImage.Format_RGB888)
+            self.pixmap = QPixmap.fromImage(self.pixmap)
+            self.pixmap = self.pixmap.scaled(480, 480, Qt.KeepAspectRatio, Qt.FastTransformation)
+            self.ui.mask_photo.setPixmap(self.pixmap)
 
 
 
@@ -627,6 +651,7 @@ class SplashScreen(QMainWindow):
 
         # APPLY STYLESHEET WITH NEW VALUES
         self.ui.progress_bar.setStyleSheet(newStylesheet)
+
 
 
 if __name__ == "__main__":
