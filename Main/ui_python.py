@@ -97,7 +97,7 @@ class Ui_MainWindow(object):
 "	background-color: rgb(76, 76, 76);\n"
 "}")
         icon = QIcon()
-        icon.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/line.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u"../Main/button_images/line.png", QSize(), QIcon.Normal, QIcon.Off)
         self.minimize_button.setIcon(icon)
         self.minimize_button.setIconSize(QSize(14, 16))
 
@@ -132,7 +132,7 @@ class Ui_MainWindow(object):
 "	background-color: rgb(76, 76, 76);\n"
 "}")
         icon1 = QIcon()
-        icon1.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/square.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon1.addFile(u"../Main/button_images/square.png", QSize(), QIcon.Normal, QIcon.Off)
         self.maximize_button.setIcon(icon1)
         self.maximize_button.setIconSize(QSize(12, 12))
 
@@ -161,7 +161,7 @@ class Ui_MainWindow(object):
 "	background-color: rgb(255, 45, 30);\n"
 "}")
         icon2 = QIcon()
-        icon2.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/previous.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon2.addFile(u"../Main/button_images/çıkış.png", QSize(), QIcon.Normal, QIcon.Off)
         self.exit_button.setIcon(icon2)
         self.exit_button.setIconSize(QSize(10, 10))
         self.exit_button.setAutoDefault(False)
@@ -414,7 +414,7 @@ class Ui_MainWindow(object):
 "	\n"
 "}")
         icon3 = QIcon()
-        icon3.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/photo.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon3.addFile(u"../Main/button_images/photo.png", QSize(), QIcon.Normal, QIcon.Off)
         self.mask_btn.setIcon(icon3)
         self.mask_btn.setIconSize(QSize(24, 24))
 
@@ -439,7 +439,7 @@ class Ui_MainWindow(object):
 "	\n"
 "}")
         icon4 = QIcon()
-        icon4.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/invert_mask.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon4.addFile(u"../Main/button_images/invert_mask.png", QSize(), QIcon.Normal, QIcon.Off)
         self.invert_mask_btn.setIcon(icon4)
         self.invert_mask_btn.setIconSize(QSize(24, 24))
 
@@ -464,7 +464,7 @@ class Ui_MainWindow(object):
 "	\n"
 "}")
         icon5 = QIcon()
-        icon5.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/contour.svg", QSize(), QIcon.Normal, QIcon.Off)
+        icon5.addFile(u"../Main/button_images/contour.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.contour_btn.setIcon(icon5)
         self.contour_btn.setIconSize(QSize(24, 24))
 
@@ -496,7 +496,7 @@ class Ui_MainWindow(object):
 "	\n"
 "}")
         icon6 = QIcon()
-        icon6.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/export.svg", QSize(), QIcon.Normal, QIcon.Off)
+        icon6.addFile(u"../Main/button_images/export.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.export_btn.setIcon(icon6)
         self.export_btn.setIconSize(QSize(23, 23))
 
@@ -549,7 +549,7 @@ class Ui_MainWindow(object):
 "	\n"
 "}")
         icon7 = QIcon()
-        icon7.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/previous.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon7.addFile(u"../Main/button_images/previous.png", QSize(), QIcon.Normal, QIcon.Off)
         self.pushButton_3.setIcon(icon7)
         self.pushButton_3.setIconSize(QSize(18, 18))
 
