@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainygRMUl.ui'
+## Form generated from reading UI file 'mainunJTzN.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -17,8 +17,13 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1115, 650)
-
+        MainWindow.setWindowModality(Qt.NonModal)
+        MainWindow.resize(1115, 571)
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
+        MainWindow.setSizePolicy(sizePolicy)
         MainWindow.setStyleSheet(u"background-color: rgb(63, 63, 63);")
         MainWindow.setIconSize(QSize(24, 24))
         MainWindow.setAnimated(True)
@@ -97,7 +102,7 @@ class Ui_MainWindow(object):
 "	background-color: rgb(76, 76, 76);\n"
 "}")
         icon = QIcon()
-        icon.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/line.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u"button_images/line.png", QSize(), QIcon.Normal, QIcon.Off)
         self.minimize_button.setIcon(icon)
         self.minimize_button.setIconSize(QSize(14, 16))
 
@@ -117,11 +122,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_10.setContentsMargins(0, 0, 0, 0)
         self.maximize_button = QPushButton(self.maximize_button_frame)
         self.maximize_button.setObjectName(u"maximize_button")
-        sizePolicy = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.maximize_button.sizePolicy().hasHeightForWidth())
-        self.maximize_button.setSizePolicy(sizePolicy)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.maximize_button.sizePolicy().hasHeightForWidth())
+        self.maximize_button.setSizePolicy(sizePolicy1)
         self.maximize_button.setMinimumSize(QSize(40, 25))
         self.maximize_button.setMaximumSize(QSize(16777215, 16777215))
         self.maximize_button.setStyleSheet(u"QPushButton{\n"
@@ -132,7 +137,7 @@ class Ui_MainWindow(object):
 "	background-color: rgb(76, 76, 76);\n"
 "}")
         icon1 = QIcon()
-        icon1.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/square.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon1.addFile(u"button_images/square.png", QSize(), QIcon.Normal, QIcon.Off)
         self.maximize_button.setIcon(icon1)
         self.maximize_button.setIconSize(QSize(12, 12))
 
@@ -161,7 +166,7 @@ class Ui_MainWindow(object):
 "	background-color: rgb(255, 45, 30);\n"
 "}")
         icon2 = QIcon()
-        icon2.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/previous.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon2.addFile(u"button_images/çıkış.png", QSize(), QIcon.Normal, QIcon.Off)
         self.exit_button.setIcon(icon2)
         self.exit_button.setIconSize(QSize(10, 10))
         self.exit_button.setAutoDefault(False)
@@ -289,11 +294,8 @@ class Ui_MainWindow(object):
         self.tabWidget = QTabWidget(self.graph_frame)
         self.tabWidget.setObjectName(u"tabWidget")
         self.tabWidget.setEnabled(True)
-        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.tabWidget.sizePolicy().hasHeightForWidth())
-        self.tabWidget.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.tabWidget.sizePolicy().hasHeightForWidth())
+        self.tabWidget.setSizePolicy(sizePolicy)
         self.tabWidget.setBaseSize(QSize(0, 0))
         self.tabWidget.setStyleSheet(u"QTabBar::tab {\n"
 "	font: 75 8pt \"MS Shell Dlg 2\";\n"
@@ -414,7 +416,7 @@ class Ui_MainWindow(object):
 "	\n"
 "}")
         icon3 = QIcon()
-        icon3.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/photo.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon3.addFile(u"button_images/photo.png", QSize(), QIcon.Normal, QIcon.Off)
         self.mask_btn.setIcon(icon3)
         self.mask_btn.setIconSize(QSize(24, 24))
 
@@ -439,7 +441,7 @@ class Ui_MainWindow(object):
 "	\n"
 "}")
         icon4 = QIcon()
-        icon4.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/invert_mask.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon4.addFile(u"button_images/invert_mask.png", QSize(), QIcon.Normal, QIcon.Off)
         self.invert_mask_btn.setIcon(icon4)
         self.invert_mask_btn.setIconSize(QSize(24, 24))
 
@@ -464,7 +466,7 @@ class Ui_MainWindow(object):
 "	\n"
 "}")
         icon5 = QIcon()
-        icon5.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/contour.svg", QSize(), QIcon.Normal, QIcon.Off)
+        icon5.addFile(u"button_images/contour.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.contour_btn.setIcon(icon5)
         self.contour_btn.setIconSize(QSize(24, 24))
 
@@ -496,7 +498,7 @@ class Ui_MainWindow(object):
 "	\n"
 "}")
         icon6 = QIcon()
-        icon6.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/export.svg", QSize(), QIcon.Normal, QIcon.Off)
+        icon6.addFile(u"button_images/export.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.export_btn.setIcon(icon6)
         self.export_btn.setIconSize(QSize(23, 23))
 
@@ -549,7 +551,7 @@ class Ui_MainWindow(object):
 "	\n"
 "}")
         icon7 = QIcon()
-        icon7.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/previous.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon7.addFile(u"button_images/previous.png", QSize(), QIcon.Normal, QIcon.Off)
         self.pushButton_3.setIcon(icon7)
         self.pushButton_3.setIconSize(QSize(18, 18))
 
@@ -665,8 +667,24 @@ class Ui_MainWindow(object):
         self.footer.setStyleSheet(u"background-color: rgb(63, 63, 63);")
         self.footer.setFrameShape(QFrame.StyledPanel)
         self.footer.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_18 = QHBoxLayout(self.footer)
+        self.horizontalLayout_18.setSpacing(0)
+        self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
+        self.horizontalLayout_18.setContentsMargins(0, 0, 2, 0)
+        self.resize_btn = QPushButton(self.footer)
+        self.resize_btn.setObjectName(u"resize_btn")
+        self.resize_btn.setMaximumSize(QSize(30, 16777215))
+        self.resize_btn.setStyleSheet(u"border: none;\n"
+"background: none;")
+        icon8 = QIcon()
+        icon8.addFile(u"button_images/right-down.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.resize_btn.setIcon(icon8)
+        self.resize_btn.setIconSize(QSize(16, 16))
 
-        self.verticalLayout.addWidget(self.footer)
+        self.horizontalLayout_18.addWidget(self.resize_btn, 0, Qt.AlignHCenter)
+
+
+        self.verticalLayout.addWidget(self.footer, 0, Qt.AlignRight)
 
 
         self.horizontalLayout_7.addLayout(self.verticalLayout)
@@ -679,7 +697,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.StackedWidget.setCurrentIndex(0)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -768,5 +786,6 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(shortcut)
         self.pushButton_3.setShortcut(QCoreApplication.translate("MainWindow", u"Backspace", None))
 #endif // QT_CONFIG(shortcut)
+        self.resize_btn.setText("")
     # retranslateUi
 
