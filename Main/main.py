@@ -52,7 +52,7 @@ class MplCanvas(FigureCanvas):
 
         super(MplCanvas, self).__init__(fig)
 
-
+flag = 0
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -139,11 +139,19 @@ class MainWindow(QMainWindow):
         self.ui.mask_3_above_slider.valueChanged.connect(self.slider_3)
         self.ui.mask_3_below_slider.valueChanged.connect(self.slider_3)
 
-
+        global flag
 
         self.ui.pushButton_3.clicked.connect(self.prepare_when_return)
         self.ui.invert_mask_btn.clicked.connect(self.invert_mask)
-        self.ui.mask_btn.clicked.connect(self.update_pixmap)
+
+        #to switch between mask and invert mask
+        if flag == 0:
+            self.ui.mask_btn.clicked.connect(self.update_pixmap)
+            flag = 1
+        else:
+            self.ui.mask_btn.clicked.connect(self.invert_mask)
+            flag = 0
+
         self.ui.export_btn.clicked.connect(self.export_as_function)
         self.ui.contour_btn.clicked.connect(self.apply_contour)
         self.ui.exit_button.clicked.connect(lambda: self.close())
