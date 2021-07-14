@@ -199,52 +199,25 @@ class MainWindow(QMainWindow):
 
         if self.graph_type == 0:
 
+            self.prepare_3d_graph(self.canvas,img,"RGB",img_rgb)
 
-
-
-            self.canvas.axes.clear()
-            self.canvas.axes.set_xlabel("R", color=(1, 1, 1, 1))
-            self.canvas.axes.set_ylabel("G", color=(1, 1, 1, 1))
-            self.canvas.axes.set_zlabel("B", color=(1, 1, 1, 1))
-            self.canvas.axes.tick_params(axis="x", colors=(1, 1, 1, 1))
-            self.canvas.axes.tick_params(axis="y", colors=(1, 1, 1, 1))
-            self.canvas.axes.tick_params(axis="z", colors=(1, 1, 1, 1))
-
-            self.canvas.axes.scatter(img[:, :, 0].ravel(), img[:, :, 1].ravel(), img[:, :, 2].ravel(),
-                              c=img_rgb.reshape((-1, 3)), edgecolors='none')
-
-            self.canvas.draw()
 
         elif self.graph_type==1:
             img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
             img_hsv_c = img_hsv / 255
 
-            self.hsv_canvas.axes_2.clear()
-            self.hsv_canvas.axes_2.scatter(img_hsv[:, :, 0].ravel(), img_hsv[:, :, 1].ravel(), img_hsv[:, :, 2].ravel(),
-                              c=img_hsv_c.reshape((-1, 3)), edgecolors='none')
-            self.hsv_canvas.axes_2.set_xlabel("H", color=(1, 1, 1, 1))
-            self.hsv_canvas.axes_2.set_ylabel("S", color=(1, 1, 1, 1))
-            self.hsv_canvas.axes_2.set_zlabel("V", color=(1, 1, 1, 1))
-            self.hsv_canvas.axes_2.tick_params(axis="x", colors=(1, 1, 1, 1))
-            self.hsv_canvas.axes_2.tick_params(axis="y", colors=(1, 1, 1, 1))
-            self.hsv_canvas.axes_2.tick_params(axis="z", colors=(1, 1, 1, 1))
-            self.hsv_canvas.draw()
+
+
+            self.prepare_3d_graph(self.hsv_canvas,img_hsv,"HSV",img_hsv_c)
 
         elif self.graph_type==2:
 
             img_yuv = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
             img_yuv_c = img_yuv / 255
 
-            self.yuv_canvas.axes_3.clear()
-            self.yuv_canvas.axes_3.scatter(img_yuv[:, :, 0].ravel(), img_yuv[:, :, 1].ravel(), img_yuv[:, :, 2].ravel(),
-                              c=img_yuv_c.reshape((-1, 3)), edgecolors='none')
-            self.yuv_canvas.axes_3.set_xlabel("Y", color=(1, 1, 1, 1))
-            self.yuv_canvas.axes_3.set_ylabel("U", color=(1, 1, 1, 1))
-            self.yuv_canvas.axes_3.set_zlabel("V", color=(1, 1, 1, 1))
-            self.yuv_canvas.axes_3.tick_params(axis="x", colors=(1, 1, 1, 1))
-            self.yuv_canvas.axes_3.tick_params(axis="y", colors=(1, 1, 1, 1))
-            self.yuv_canvas.axes_3.tick_params(axis="z", colors=(1, 1, 1, 1))
-            self.yuv_canvas.draw()
+            self.prepare_3d_graph(self.yuv_canvas,img_yuv,"YUV",img_yuv_c)
+
+
 
 
 
@@ -331,6 +304,9 @@ class MainWindow(QMainWindow):
                 self.mask_1_canvas.axes.clear()
                 self.histr = cv2.calcHist([self.img], [0], None, [256], [0, 256])
                 self.mask_1_canvas.axes.plot(self.histr, color='r')
+                self.mask_1_canvas.axes.tick_params(axis="x", colors=(1, 1, 1, 1))
+                self.mask_1_canvas.axes.tick_params(axis="y", colors=(1, 1, 1, 1))
+
                 self.mask_1_canvas.draw()
 
 
@@ -339,6 +315,9 @@ class MainWindow(QMainWindow):
                 self.mask_2_canvas.axes.clear()
                 self.histr_g = cv2.calcHist([self.img], [1], None, [256], [0, 256])
                 self.mask_2_canvas.axes.plot(self.histr_g, color='g')
+                self.mask_2_canvas.axes.tick_params(axis="x", colors=(1, 1, 1, 1))
+                self.mask_2_canvas.axes.tick_params(axis="y", colors=(1, 1, 1, 1))
+
                 self.mask_2_canvas.draw()
 
             elif self.graph_type==2:
@@ -346,6 +325,9 @@ class MainWindow(QMainWindow):
                 self.mask_3_canvas.axes.clear()
                 self.histr_b = cv2.calcHist([self.img], [2], None, [256], [0, 256])
                 self.mask_3_canvas.axes.plot(self.histr_b, color='b')
+                self.mask_3_canvas.axes.tick_params(axis="x", colors=(1, 1, 1, 1))
+                self.mask_3_canvas.axes.tick_params(axis="y", colors=(1, 1, 1, 1))
+
                 self.mask_3_canvas.draw()
         if color_space == 1:
             self.graph_type = graph_type
@@ -384,26 +366,17 @@ class MainWindow(QMainWindow):
         if self.ui.mask_1_above_slider.value()==0:
             pass
         else:
-            self.mask_1_canvas.axes.clear()
-
-            self.mask_1_canvas.axes.plot(self.histr, color='r')
-            #self.r_canvas.axes.xlim([0, 256])
-            self.mask_1_canvas.axes.axvline(self.ui.mask_1_above_slider.value(), 0, 255)
-            self.mask_1_canvas.axes.axvline(self.ui.mask_1_below_slider.value(),0,255)
-
-            self.mask_1_canvas.draw()
+            self.prepare_hist_graph_styles(self.mask_1_canvas,self.ui.mask_1_above_slider.value()
+                                           ,self.ui.mask_1_below_slider.value(),self.histr,"r")
             self.update_pixmap()
 
     def slider_2(self):
         if self.ui.mask_2_above_slider.value()==0:
             pass
         else:
-            self.mask_2_canvas.axes.clear()
+            self.prepare_hist_graph_styles(self.mask_2_canvas,self.ui.mask_2_above_slider.value()
+                                           ,self.ui.mask_2_below_slider.value(),self.histr_g,"g")
 
-            self.mask_2_canvas.axes.plot(self.histr_g, color='g')
-            self.mask_2_canvas.axes.axvline(self.ui.mask_2_above_slider.value(), 0, 255)
-            self.mask_2_canvas.axes.axvline(self.ui.mask_2_below_slider.value(),0,255)
-            self.mask_2_canvas.draw()
             self.update_pixmap()
 
 
@@ -413,11 +386,8 @@ class MainWindow(QMainWindow):
 
         else:
 
-            self.mask_3_canvas.axes.clear()
-            self.mask_3_canvas.axes.plot(self.histr_b, color='b')
-            self.mask_3_canvas.axes.axvline(self.ui.mask_3_above_slider.value(), 0, 255)
-            self.mask_3_canvas.axes.axvline(self.ui.mask_3_below_slider.value(),0,255)
-            self.mask_3_canvas.draw()
+            self.prepare_hist_graph_styles(self.mask_3_canvas,self.ui.mask_3_above_slider.value()
+                                           ,self.ui.mask_3_below_slider.value(),self.histr_b,"b")
             self.update_pixmap()
 
 
@@ -459,8 +429,39 @@ class MainWindow(QMainWindow):
 
         self.ui.StackedWidget.setCurrentWidget(self.ui.color_space_page)
 
+    def prepare_hist_graph_styles(self,canvas,above,below,hist,clr):
+        canvas.axes.clear()
+        canvas.axes.tick_params(axis="x",colors=(1,1,1,1))
+        canvas.axes.tick_params(axis="y",colors=(1,1,1,1))
+        canvas.axes.axvline(above,0,255)
+        canvas.axes.axvline(below,0,255)
+        canvas.axes.plot(hist,color=clr)
+        canvas.draw()
 
 
+
+    def prepare_3d_graph(self,canvas,img,c_spc,dot_c):
+        if canvas == self.canvas:
+            axs = self.canvas.axes
+        elif canvas == self.hsv_canvas:
+            axs = self.hsv_canvas.axes_2
+        else:
+            axs = self.yuv_canvas.axes_3
+
+        x_title =c_spc[0]
+        y_title = c_spc[1]
+        z_title = c_spc[2]
+        axs.clear()
+        axs.scatter(img[:, :, 0].ravel(), img[:, :, 1].ravel(), img[:, :, 2].ravel(),
+                c=dot_c.reshape((-1, 3)), edgecolors='none')
+        axs.set_xlabel(x_title, color = (1,1,1,1))
+        axs.set_ylabel(y_title,color = (1,1,1,1))
+        axs.set_zlabel(z_title, color = (1,1,1,1))
+        axs.tick_params(axis="x",colors=(1,1,1,1))
+        axs.tick_params(axis="y",colors=(1,1,1,1))
+        axs.tick_params(axis="z",colors=(1,1,1,1))
+
+        canvas.draw()
 
 
     def invert_mask(self):

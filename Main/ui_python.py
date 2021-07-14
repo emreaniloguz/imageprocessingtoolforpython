@@ -11,6 +11,7 @@
 from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
+from pathlib import Path
 
 
 class Ui_MainWindow(object):
@@ -27,6 +28,8 @@ class Ui_MainWindow(object):
         MainWindow.setStyleSheet(u"background-color: rgb(63, 63, 63);")
         MainWindow.setIconSize(QSize(24, 24))
         MainWindow.setAnimated(True)
+        line_path = Path("imageprocessingtoolforpython/Main/button_images/")
+        line_path = line_path / "line.png"
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.horizontalLayout_8 = QHBoxLayout(self.centralwidget)
