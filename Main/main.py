@@ -1,5 +1,6 @@
 import sys
 import platform
+import time
 from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt, QEvent)
 from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient,QImage)
@@ -51,7 +52,7 @@ class MplCanvas(FigureCanvas):
 
         super(MplCanvas, self).__init__(fig)
 
-
+flag = 0
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -79,18 +80,19 @@ class MainWindow(QMainWindow):
         self.rgb_layout = QVBoxLayout()
         self.ui.rgb_frame.setLayout(self.rgb_layout)
         self.rgb_layout.addWidget(self.canvas)
-        self.rgb_layout.addWidget(self.rgb_pushbutton)
+        self.rgb_layout.addWidget(self.rgb_pushbutton, 0, Qt.AlignHCenter)
 
 
         self.hsv_layout = QVBoxLayout()
         self.ui.hsv_frame.setLayout(self.hsv_layout)
         self.hsv_layout.addWidget(self.hsv_canvas)
-        self.hsv_layout.addWidget(self.hsv_pushbutton)
+        self.hsv_layout.addWidget(self.hsv_pushbutton, 9, Qt.AlignHCenter)
 
         self.yuv_layout = QVBoxLayout()
         self.ui.yuv_frame.setLayout(self.yuv_layout)
         self.yuv_layout.addWidget(self.yuv_canvas)
-        self.yuv_layout.addWidget(self.yuv_pushbutton)
+        self.yuv_layout.addWidget(self.yuv_pushbutton, 9, Qt.AlignHCenter)
+
 
 
         #
@@ -137,11 +139,19 @@ class MainWindow(QMainWindow):
         self.ui.mask_3_above_slider.valueChanged.connect(self.slider_3)
         self.ui.mask_3_below_slider.valueChanged.connect(self.slider_3)
 
-
+        global flag
 
         self.ui.pushButton_3.clicked.connect(self.prepare_when_return)
         self.ui.invert_mask_btn.clicked.connect(self.invert_mask)
-        self.ui.mask_btn.clicked.connect(self.update_pixmap)
+
+        #to switch between mask and invert mask
+        if flag == 0:
+            self.ui.mask_btn.clicked.connect(self.update_pixmap)
+            flag = 1
+        else:
+            self.ui.mask_btn.clicked.connect(self.invert_mask)
+            flag = 0
+
         self.ui.export_btn.clicked.connect(self.export_as_function)
         self.ui.contour_btn.clicked.connect(self.apply_contour)
         self.ui.exit_button.clicked.connect(lambda: self.close())
@@ -262,9 +272,9 @@ class MainWindow(QMainWindow):
 
 
     def create_buttons(self):
-        self.rgb_pushbutton = QPushButton("Choose RGB")
-        self.hsv_pushbutton = QPushButton("Choose HSV")
-        self.yuv_pushbutton = QPushButton("Choose YUV")
+        self.rgb_pushbutton = QPushButton("    Choose RGB    ")
+        self.hsv_pushbutton = QPushButton("    Choose HSV    ")
+        self.yuv_pushbutton = QPushButton("    Choose YUV    ")
 
         #pass
 
@@ -282,6 +292,9 @@ class MainWindow(QMainWindow):
                 background-color:#3f3f3f ;
                 
             }""")
+        button.setMaximumSize(QSize(120, 30))
+
+
 
 
     def prepare_rgb_mask_page(self):
@@ -542,7 +555,7 @@ class MainWindow(QMainWindow):
         # FIX MAX VALUE
         if value == 100:
             stop_1 = "1.000"
-            stop_2 = "1.000"
+            stop_2 = "0.992"
 
         # SET VALUES TO NEW STYLESHEET
         newStylesheet = styleSheet.replace("{STOP_1}", stop_1).replace("{STOP_2}", stop_2).replace("{COLOR}", color)
@@ -599,15 +612,15 @@ class SplashScreen(QMainWindow):
 
         # REPLACE VALUE
         newHtml = htmlText.replace("{VALUE}", str(jumper))
-
-        if (value > jumper):
+        if (value >= jumper):
             # APPLY NEW PERCENTAGE TEXT
             self.ui.percent.setText(newHtml)
             jumper += 10
 
         # SET VALUE TO PROGRESS BAR
         # fix max value error if > than 100
-        if value >= 100: value = 1.000
+        if value > 100:
+            value = 1.000
         self.progressBarValue(value)
 
         # CLOSE SPLASH SCREE AND OPEN APP

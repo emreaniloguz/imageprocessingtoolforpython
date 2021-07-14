@@ -161,7 +161,7 @@ class Ui_MainWindow(object):
 "	background-color: rgb(255, 45, 30);\n"
 "}")
         icon2 = QIcon()
-        icon2.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/çıkış.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon2.addFile(u"C:/Users/emrea/PycharmProjects/imageprocessingtoolforpython/Main/button_images/previous.png", QSize(), QIcon.Normal, QIcon.Off)
         self.exit_button.setIcon(icon2)
         self.exit_button.setIconSize(QSize(10, 10))
         self.exit_button.setAutoDefault(False)

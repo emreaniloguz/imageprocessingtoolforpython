@@ -2,13 +2,22 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>1115</width>
-    <height>626</height>
+    <height>571</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Image Processing Tool</string>
@@ -244,7 +253,7 @@ QPushButton:hover{
                     </property>
                     <property name="icon">
                      <iconset>
-                      <normaloff>../../../Desktop/line.png</normaloff>../../../Desktop/line.png</iconset>
+                      <normaloff>button_images/line.png</normaloff>button_images/line.png</iconset>
                     </property>
                     <property name="iconSize">
                      <size>
@@ -330,7 +339,7 @@ QPushButton:hover{
                     </property>
                     <property name="icon">
                      <iconset>
-                      <normaloff>../../../Desktop/square.png</normaloff>../../../Desktop/square.png</iconset>
+                      <normaloff>button_images/square.png</normaloff>button_images/square.png</iconset>
                     </property>
                     <property name="iconSize">
                      <size>
@@ -407,7 +416,7 @@ QPushButton:hover{
                     </property>
                     <property name="icon">
                      <iconset>
-                      <normaloff>../../../Desktop/çıkış.png</normaloff>../../../Desktop/çıkış.png</iconset>
+                      <normaloff>button_images/çıkış.png</normaloff>button_images/çıkış.png</iconset>
                     </property>
                     <property name="iconSize">
                      <size>
@@ -948,7 +957,7 @@ QPushButton:hover{
                        </property>
                        <property name="icon">
                         <iconset>
-                         <normaloff>photo.png</normaloff>photo.png</iconset>
+                         <normaloff>button_images/photo.png</normaloff>button_images/photo.png</iconset>
                        </property>
                        <property name="iconSize">
                         <size>
@@ -996,7 +1005,7 @@ QPushButton:hover{
                        </property>
                        <property name="icon">
                         <iconset>
-                         <normaloff>invert_mask.png</normaloff>invert_mask.png</iconset>
+                         <normaloff>button_images/invert_mask.png</normaloff>button_images/invert_mask.png</iconset>
                        </property>
                        <property name="iconSize">
                         <size>
@@ -1044,7 +1053,7 @@ QPushButton:hover{
                        </property>
                        <property name="icon">
                         <iconset>
-                         <normaloff>contour.svg</normaloff>contour.svg</iconset>
+                         <normaloff>button_images/contour.svg</normaloff>button_images/contour.svg</iconset>
                        </property>
                        <property name="iconSize">
                         <size>
@@ -1101,7 +1110,7 @@ QPushButton:hover{
                        </property>
                        <property name="icon">
                         <iconset>
-                         <normaloff>export.svg</normaloff>export.svg</iconset>
+                         <normaloff>button_images/export.svg</normaloff>button_images/export.svg</iconset>
                        </property>
                        <property name="iconSize">
                         <size>
@@ -1193,7 +1202,7 @@ QPushButton:hover{
                             </property>
                             <property name="icon">
                              <iconset>
-                              <normaloff>previous.png</normaloff>previous.png</iconset>
+                              <normaloff>button_images/previous.png</normaloff>button_images/previous.png</iconset>
                             </property>
                             <property name="iconSize">
                              <size>
@@ -1361,7 +1370,7 @@ QPushButton:hover{
            </layout>
           </widget>
          </item>
-         <item>
+         <item alignment="Qt::AlignRight">
           <widget class="QFrame" name="footer">
            <property name="minimumSize">
             <size>
@@ -1384,6 +1393,50 @@ QPushButton:hover{
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_18">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>2</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item alignment="Qt::AlignHCenter">
+             <widget class="QPushButton" name="resize_btn">
+              <property name="maximumSize">
+               <size>
+                <width>30</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border: none;
+background: none;</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>button_images/right-down.svg</normaloff>button_images/right-down.svg</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </item>
         </layout>
