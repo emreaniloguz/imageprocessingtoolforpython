@@ -127,6 +127,7 @@ class MainWindow(QMainWindow):
         #self.rgb_pushbutton.clicked.connect(lambda: self.ui.StackedWidget.setCurrentWidget(self.ui.masking_page))
         self.rgb_pushbutton.clicked.connect(self.prepare_rgb_mask_page)
         self.hsv_pushbutton.clicked.connect(self.prepare_hsv_mask_page)
+        self.yuv_pushbutton.clicked.connect(self.prepare_yuv_mask_page)
 
 
         self.ui.mask_1_above_slider.valueChanged.connect(self.slider_1)
@@ -276,6 +277,8 @@ class MainWindow(QMainWindow):
         self.ui.mask_photo.setPixmap(self.pixmap)
 
         #
+
+
         self.update_mask_plot(0,0)
         self.update_mask_plot(1,0)
         self.update_mask_plot(2,0)
@@ -289,6 +292,16 @@ class MainWindow(QMainWindow):
         self.update_mask_plot(1,1)
         self.update_mask_plot(2,1)
 
+
+    def prepare_yuv_mask_page(self):
+        self.ui.StackedWidget.setCurrentWidget(self.ui.masking_page)
+        self.ui.mask_photo.setPixmap(self.pixmap)
+
+        #
+
+        self.update_mask_plot(0,2)
+        self.update_mask_plot(1,2)
+        self.update_mask_plot(2,2)
 
     def update_mask_plot(self,graph_type,color_space):
 
@@ -355,6 +368,28 @@ class MainWindow(QMainWindow):
                 self.mask_3_canvas.axes.clear()
                 self.histr_b = cv2.calcHist([self.img], [2], None, [256], [0, 256])
                 self.mask_3_canvas.axes.plot(self.histr_b, color='b')
+                self.mask_3_canvas.draw()
+
+        if color_space == 2:
+            self.graph_type = graph_type
+            self.img = cv2.cvtColor(self.img, cv2.COLOR_BGR2YUV)
+
+            if self.graph_type == 0 :
+                self.mask_1_canvas.axes.clear()
+                self.histr = cv2.calcHist([self.img],[0],None, [256], [0,256])
+                self.mask_1_canvas.axes.plot(self.histr, color = 'r')
+                self.mask_1_canvas.draw()
+
+            elif self.graph_type == 1:
+                self.mask_2_canvas.axes.clear()
+                self.histr_g = cv2.calcHist([self.img],[0],None, [256], [0,256])
+                self.mask_2_canvas.axes.plot(self.histr_g, color = 'g')
+                self.mask_2_canvas.draw()
+
+            elif self.graph_type == 2:
+                self.mask_3_canvas.axes.clear()
+                self.histr_b = cv2.calcHist([self.img],[0],None, [256], [0,256])
+                self.mask_3_canvas.axes.plot(self.histr_b,color = 'b')
                 self.mask_3_canvas.draw()
 
 
@@ -424,6 +459,12 @@ class MainWindow(QMainWindow):
         self.ui.mask_2_above_slider.setSliderPosition(0)
         self.ui.mask_3_below_slider.setSliderPosition(255)
         self.ui.mask_3_above_slider.setSliderPosition(0)
+        height, width, channels = self.unchanged.shape
+        bpl = 3 * width
+        self.pixmap = QImage(self.unchanged, width, height, bpl, QImage.Format_RGB888)
+        self.pixmap = QPixmap.fromImage(self.pixmap)
+        self.pixmap = self.pixmap.scaled(480, 480, Qt.KeepAspectRatio, Qt.FastTransformation)
+        self.ui.mask_photo.setPixmap(self.pixmap)
 
 
 
@@ -463,6 +504,12 @@ class MainWindow(QMainWindow):
 
         canvas.draw()
 
+
+    def find_colorspc(self):
+        try:
+            a= self.histy
+        except:
+            pass
 
     def invert_mask(self):
 
