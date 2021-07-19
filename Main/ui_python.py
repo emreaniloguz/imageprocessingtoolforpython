@@ -303,7 +303,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setStyleSheet(u"QTabBar::tab {\n"
 "	font: 75 8pt \"MS Shell Dlg 2\";\n"
 "	 height: 40px;\n"
-"	 width:163px;\n"
+"    width: 167px;\n"                                     
 "	 background: #ff5555;\n"
 "	color: white;\n"
 "	border: 1px solid;\n"

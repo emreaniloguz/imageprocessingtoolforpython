@@ -113,8 +113,6 @@ class MainWindow(QMainWindow):
         self.mask_3_layout.addWidget(self.mask_3_canvas)
 
 
-
-
         #Import Image
         self.ui.import_button.clicked.connect(self.import_button_clicked)
 
@@ -158,7 +156,7 @@ class MainWindow(QMainWindow):
         self.ui.minimize_button.clicked.connect(lambda: self.showMinimized())
         self.ui.maximize_button.clicked.connect(lambda: self.restore_or_maximize_window())
 
-        def move_window(e): #to moving window
+        def move_window(e): #to move window
             if self.isMaximized() == False:         #If page is maximized, it stays stable
                 if e.buttons() == Qt.LeftButton:
                     # Move window
@@ -166,16 +164,19 @@ class MainWindow(QMainWindow):
                     self.clickPosition = e.globalPos()
                     e.accept()
 
+        QSizeGrip(self.ui.resize_btn)
         self.ui.header.mouseMoveEvent = move_window
 
         self.show()
 
+    ## FUNC OF MAXIMIZING BUTTON
     def restore_or_maximize_window(self):
         if self.isMaximized():
             self.showNormal()
         else:
             self.showMaximized()
 
+    ##FUNC OF DEFINING POSITION OF THE PAGE
     def mousePressEvent(self, event):
         self.clickPosition = event.globalPos()
 
