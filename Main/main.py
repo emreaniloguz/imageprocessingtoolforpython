@@ -17,7 +17,6 @@ from functions import *
 from mpl_toolkits import mplot3d
 import numpy as np
 from ui_splash_screen import Ui_SplashScreen
-import os
 
 # IMPORT FUNCTIONS
 class HistCanvas(FigureCanvas):
@@ -63,8 +62,7 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self.desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
-        self.counter = 0
+
 
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint) #Remove title bar
 
@@ -115,8 +113,6 @@ class MainWindow(QMainWindow):
         self.mask_3_layout.addWidget(self.mask_3_canvas)
 
 
-
-
         #Import Image
         self.ui.import_button.clicked.connect(self.import_button_clicked)
 
@@ -129,7 +125,6 @@ class MainWindow(QMainWindow):
         #self.rgb_pushbutton.clicked.connect(lambda: self.ui.StackedWidget.setCurrentWidget(self.ui.masking_page))
         self.rgb_pushbutton.clicked.connect(self.prepare_rgb_mask_page)
         self.hsv_pushbutton.clicked.connect(self.prepare_hsv_mask_page)
-        self.yuv_pushbutton.clicked.connect(self.prepare_yuv_mask_page)
 
 
         self.ui.mask_1_above_slider.valueChanged.connect(self.slider_1)
@@ -161,10 +156,7 @@ class MainWindow(QMainWindow):
         self.ui.minimize_button.clicked.connect(lambda: self.showMinimized())
         self.ui.maximize_button.clicked.connect(lambda: self.restore_or_maximize_window())
 
-
-
-
-        def move_window(e): #to moving window
+        def move_window(e): #to move window
             if self.isMaximized() == False:         #If page is maximized, it stays stable
                 if e.buttons() == Qt.LeftButton:
                     # Move window
@@ -172,16 +164,19 @@ class MainWindow(QMainWindow):
                     self.clickPosition = e.globalPos()
                     e.accept()
 
+        QSizeGrip(self.ui.resize_btn)
         self.ui.header.mouseMoveEvent = move_window
 
         self.show()
 
+    ## FUNC OF MAXIMIZING BUTTON
     def restore_or_maximize_window(self):
         if self.isMaximized():
             self.showNormal()
         else:
             self.showMaximized()
 
+    ##FUNC OF DEFINING POSITION OF THE PAGE
     def mousePressEvent(self, event):
         self.clickPosition = event.globalPos()
 
@@ -282,8 +277,6 @@ class MainWindow(QMainWindow):
         self.ui.mask_photo.setPixmap(self.pixmap)
 
         #
-
-
         self.update_mask_plot(0,0)
         self.update_mask_plot(1,0)
         self.update_mask_plot(2,0)
@@ -297,16 +290,6 @@ class MainWindow(QMainWindow):
         self.update_mask_plot(1,1)
         self.update_mask_plot(2,1)
 
-
-    def prepare_yuv_mask_page(self):
-        self.ui.StackedWidget.setCurrentWidget(self.ui.masking_page)
-        self.ui.mask_photo.setPixmap(self.pixmap)
-
-        #
-
-        self.update_mask_plot(0,2)
-        self.update_mask_plot(1,2)
-        self.update_mask_plot(2,2)
 
     def update_mask_plot(self,graph_type,color_space):
 
@@ -350,15 +333,13 @@ class MainWindow(QMainWindow):
         if color_space == 1:
             self.graph_type = graph_type
             self.img = cv2.cvtColor(self.img, cv2.COLOR_BGR2HSV)
-            self.ui.mask_1_below_slider.setSliderPosition(179)
-            self.ui.mask_1_below_slider.setMaximum(179)
 
             self.img_rgb = self.img / 255
 
             if self.graph_type == 0:
 
                 self.mask_1_canvas.axes.clear()
-                self.histr = cv2.calcHist([self.img], [0], None, [179], [0, 179])
+                self.histr = cv2.calcHist([self.img], [0], None, [256], [0, 256])
                 self.mask_1_canvas.axes.plot(self.histr, color='r')
                 self.mask_1_canvas.draw()
 
@@ -375,28 +356,6 @@ class MainWindow(QMainWindow):
                 self.mask_3_canvas.axes.clear()
                 self.histr_b = cv2.calcHist([self.img], [2], None, [256], [0, 256])
                 self.mask_3_canvas.axes.plot(self.histr_b, color='b')
-                self.mask_3_canvas.draw()
-
-        if color_space == 2:
-            self.graph_type = graph_type
-            self.img = cv2.cvtColor(self.img, cv2.COLOR_BGR2YUV)
-
-            if self.graph_type == 0 :
-                self.mask_1_canvas.axes.clear()
-                self.histr = cv2.calcHist([self.img],[0],None, [256], [0,256])
-                self.mask_1_canvas.axes.plot(self.histr, color = 'r')
-                self.mask_1_canvas.draw()
-
-            elif self.graph_type == 1:
-                self.mask_2_canvas.axes.clear()
-                self.histr_g = cv2.calcHist([self.img],[0],None, [256], [0,256])
-                self.mask_2_canvas.axes.plot(self.histr_g, color = 'g')
-                self.mask_2_canvas.draw()
-
-            elif self.graph_type == 2:
-                self.mask_3_canvas.axes.clear()
-                self.histr_b = cv2.calcHist([self.img],[0],None, [256], [0,256])
-                self.mask_3_canvas.axes.plot(self.histr_b,color = 'b')
                 self.mask_3_canvas.draw()
 
 
@@ -466,12 +425,6 @@ class MainWindow(QMainWindow):
         self.ui.mask_2_above_slider.setSliderPosition(0)
         self.ui.mask_3_below_slider.setSliderPosition(255)
         self.ui.mask_3_above_slider.setSliderPosition(0)
-        height, width, channels = self.unchanged.shape
-        bpl = 3 * width
-        self.pixmap = QImage(self.unchanged, width, height, bpl, QImage.Format_RGB888)
-        self.pixmap = QPixmap.fromImage(self.pixmap)
-        self.pixmap = self.pixmap.scaled(480, 480, Qt.KeepAspectRatio, Qt.FastTransformation)
-        self.ui.mask_photo.setPixmap(self.pixmap)
 
 
 
@@ -512,12 +465,6 @@ class MainWindow(QMainWindow):
         canvas.draw()
 
 
-    def find_colorspc(self):
-        try:
-            a= self.histy
-        except:
-            pass
-
     def invert_mask(self):
 
         self.invert_msk =  cv2.bitwise_not(self.mask)
@@ -556,7 +503,8 @@ class MainWindow(QMainWindow):
 
     def export_as_function(self):
 
-        self.function_file = open(str(self.desktop_path).replace("\\","/")+"/image_mask_values.py", 'w')
+
+        self.function_file = open("C:/Users/emrea/Desktop/image_mask_values.py", 'w')
 
         self.function_file.write("import numpy as np \nimport cv2 \nimport sys\n \n \n \n")
         self.function_file.write('original_img = cv2.imread("'+self.path+'"'+")\n")
@@ -588,36 +536,41 @@ class MainWindow(QMainWindow):
 
         self.function_file.close()
 
-    def progressBarValue(self, value, widget, color):
+    def progressBarValue(self, value, widget):
+        '''
+        :param value: counter value which determines loading time
+        :param widget: the widget of the progress bar
+        :return:
+        '''
 
-        # PROGRESSBAR STYLESHEET BASE
-        styleSheet = """
+        ##Progress bar style sheet base
+        styleSheet = ("""
         QFrame{
         	border-radius: 110px;
         	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:90, stop:{STOP_1} rgba(255, 0, 127, 0), stop:{STOP_2} {COLOR});
         }
-        """
+        """)
 
-        # GET PROGRESS BAR VALUE, CONVERT TO FLOAT AND INVERT VALUES
-        # stop works of 1.000 to 0.000
+        ## Get progress bar value, convert to float and invert values
+        ## stop works between 0.000 - 1.0000
         progress = (100 - value) / 100.0
 
-        # GET NEW VALUES
+        ## Setting new stop values
         stop_1 = str(progress - 0.001)
         stop_2 = str(progress)
 
-        # FIX MAX VALUE
+        ## Fixing max stop values
         if value == 100:
             stop_1 = "1.000"
             stop_2 = "0.992"
 
-        # SET VALUES TO NEW STYLESHEET
-        newStylesheet = styleSheet.replace("{STOP_1}", stop_1).replace("{STOP_2}", stop_2).replace("{COLOR}", color)
+        ## Replacing new values to the style sheet
+        newStylesheet = styleSheet.replace("{STOP_1}", stop_1).replace("{STOP_2}", stop_2)
 
-        # APPLY STYLESHEET WITH NEW VALUES
+        ## Applying the new stylesheet to the widget
         widget.setStyleSheet(newStylesheet)
 
-#GLOBALS
+#GLOBAL VARIABLES
 counter = 0
 jumper = 10
 
@@ -627,14 +580,14 @@ class SplashScreen(QMainWindow):
         self.ui = Ui_SplashScreen()
         self.ui.setupUi(self)
 
-        ## ==> SET INITIAL PROGRESS BAR TO (0) ZERO
+        ##Setting Progress bar's initial value (0)
         self.progressBarValue(0)
 
-        ## ==> REMOVE STANDARD TITLE BAR
+        ##Removing standart title bar
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)  # Remove title bar
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)  # Set background to transparent
 
-        ## ==> APPLY DROP SHADOW EFFECT
+        ##Implementing shadow effect
         self.shadow = QGraphicsDropShadowEffect(self)
         self.shadow.setBlurRadius(20)
         self.shadow.setXOffset(0)
@@ -642,62 +595,61 @@ class SplashScreen(QMainWindow):
         self.shadow.setColor(QColor(0, 0, 0, 120))
         self.ui.progress_bar.setGraphicsEffect(self.shadow)
 
-        ## QTIMER ==> START
+        ##Starting QTimer
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.progress)
-        # TIMER IN MILLISECONDS
+
+        ##Timer in miliseconds
         self.timer.start(15)
 
-        ## SHOW ==> MAIN WINDOW
-        ########################################################################
+        ##Show mainWindow
         self.show()
-        ## ==> END ##
 
-        ## DEF TO LOANDING
-        ########################################################################
-
+    ##PROGRESSBAR FUNCTIONS
     def progress(self):
         global counter
         global jumper
         value = counter
 
-        # HTML TEXT PERCENTAGE
+        ##Base HTML text
         htmlText = """<p><span style=" font-size:68pt;">{VALUE}</span><span style=" font-size:58pt; vertical-align:super;">%</span></p>"""
 
-        # REPLACE VALUE
+        ##Replacing progress value
         newHtml = htmlText.replace("{VALUE}", str(jumper))
         if (value >= jumper):
-            # APPLY NEW PERCENTAGE TEXT
+            ##Applying new percentage text
             self.ui.percent.setText(newHtml)
             jumper += 10
 
-        # SET VALUE TO PROGRESS BAR
-        # fix max value error if > than 100
-        if value > 100:
+        ##Setting value to progress bar
+        if value > 100:              #to fix max value error if > than 100
             value = 1.000
         self.progressBarValue(value)
 
-        # CLOSE SPLASH SCREE AND OPEN APP
+        ##Closing splash screen and opening app
         if counter > 100:
             # STOP TIMER
             self.timer.stop()
 
-            # SHOW MAIN WINDOW
+            ##Showing main window
             self.main = MainWindow()
             self.main.show()
 
-            # CLOSE SPLASH SCREEN
+            ##Closing splash screen
             self.close()
 
-        # INCREASE COUNTER
+        ##Increasing counter
         counter += 0.5
 
-        ## DEF PROGRESS BAR VALUE
-        ########################################################################
-
+    ## PROGRESS BAR VALUE FUNCTION
     def progressBarValue(self, value):
+        '''
 
-        # PROGRESSBAR STYLESHEET BASE
+        :param value: counter value which determines loading time
+        :return:
+        '''
+
+        ##Progress bar style sheet base
         styleSheet = """
            QFrame{
            	border-radius: 150px;
@@ -705,18 +657,18 @@ class SplashScreen(QMainWindow):
            }
            """
 
-        # GET PROGRESS BAR VALUE, CONVERT TO FLOAT AND INVERT VALUES
-        # stop works of 1.000 to 0.000
+        ## Get progress bar value, convert to float and invert values
+        ## stop works between 0.000 - 1.0000
         progress = (100 - value) / 100.0
 
-        # GET NEW VALUES
+        ##Get new stop values
         stop_1 = str(progress - 0.001)
         stop_2 = str(progress)
 
-        # SET VALUES TO NEW STYLESHEET
+        ##Setting new values to the style sheet
         newStylesheet = styleSheet.replace("{STOP_1}", stop_1).replace("{STOP_2}", stop_2)
 
-        # APPLY STYLESHEET WITH NEW VALUES
+        ##Applying style sheet with new values
         self.ui.progress_bar.setStyleSheet(newStylesheet)
 
 
