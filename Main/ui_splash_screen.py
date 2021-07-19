@@ -20,18 +20,18 @@ class Ui_SplashScreen(object):
     def setupUi(self, SplashScreen):
         if not SplashScreen.objectName():
             SplashScreen.setObjectName(u"SplashScreen")
-        SplashScreen.resize(300, 300)
-        SplashScreen.setMaximumSize(QSize(300, 300))
+        SplashScreen.resize(700, 700)
+        SplashScreen.setMaximumSize(QSize(700, 700))
         self.centralwidget = QWidget(SplashScreen)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.centralwidget.setMaximumSize(QSize(300, 300))
+        self.centralwidget.setMaximumSize(QSize(700, 700))
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.progress_bar = QFrame(self.centralwidget)
         self.progress_bar.setObjectName(u"progress_bar")
-        self.progress_bar.setMaximumSize(QSize(300, 300))
+        self.progress_bar.setMaximumSize(QSize(330, 330))
         self.progress_bar.setStyleSheet(u"background-color:qconicalgradient(cx:0.5, cy:0.5, angle:90, stop:0 rgba(121, 121, 121, 190), stop:0.652174 rgba(140, 140, 140, 190), stop:0.659091 rgba(13, 135, 216, 255), stop:1 rgba(13, 132, 211, 255));\n"
 "border-radius:150px;")
         self.progress_bar.setFrameShape(QFrame.StyledPanel)
@@ -40,7 +40,7 @@ class Ui_SplashScreen(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.splash_main = QFrame(self.progress_bar)
         self.splash_main.setObjectName(u"splash_main")
-        self.splash_main.setMaximumSize(QSize(270, 270))
+        self.splash_main.setMaximumSize(QSize(700, 550))
         self.splash_main.setStyleSheet(u"background-color: rgb(70,70,70);\n"
 "border-radius: 135px;")
         self.splash_main.setFrameShape(QFrame.StyledPanel)
