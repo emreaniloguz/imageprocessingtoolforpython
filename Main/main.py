@@ -51,7 +51,7 @@ class MultiDimCanvas(FigureCanvas):
           self.axes_3 = fig.add_subplot(111, projection='3d')
           self.axes_3.set_facecolor((41 / 255, 41 / 255, 41 / 255, 1))
 
-        super(MplCanvas, self).__init__(fig)
+        super(MultiDimCanvas, self).__init__(fig)
 
 flag = 0
 
