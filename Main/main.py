@@ -17,6 +17,7 @@ from functions import *
 from mpl_toolkits import mplot3d
 import numpy as np
 from ui_splash_screen import Ui_SplashScreen
+import os
 
 # IMPORT FUNCTIONS
 class HistCanvas(FigureCanvas):
@@ -62,7 +63,8 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-
+        self.desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
+        self.counter = 0
 
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint) #Remove title bar
 
@@ -158,6 +160,9 @@ class MainWindow(QMainWindow):
         self.ui.exit_button.clicked.connect(lambda: self.close())
         self.ui.minimize_button.clicked.connect(lambda: self.showMinimized())
         self.ui.maximize_button.clicked.connect(lambda: self.restore_or_maximize_window())
+
+
+
 
         def move_window(e): #to moving window
             if self.isMaximized() == False:         #If page is maximized, it stays stable
@@ -345,13 +350,15 @@ class MainWindow(QMainWindow):
         if color_space == 1:
             self.graph_type = graph_type
             self.img = cv2.cvtColor(self.img, cv2.COLOR_BGR2HSV)
+            self.ui.mask_1_below_slider.setSliderPosition(179)
+            self.ui.mask_1_below_slider.setMaximum(179)
 
             self.img_rgb = self.img / 255
 
             if self.graph_type == 0:
 
                 self.mask_1_canvas.axes.clear()
-                self.histr = cv2.calcHist([self.img], [0], None, [256], [0, 256])
+                self.histr = cv2.calcHist([self.img], [0], None, [179], [0, 179])
                 self.mask_1_canvas.axes.plot(self.histr, color='r')
                 self.mask_1_canvas.draw()
 
@@ -549,8 +556,7 @@ class MainWindow(QMainWindow):
 
     def export_as_function(self):
 
-
-        self.function_file = open("C:/Users/emrea/Desktop/image_mask_values.py", 'w')
+        self.function_file = open(str(self.desktop_path).replace("\\","/")+"/image_mask_values.py", 'w')
 
         self.function_file.write("import numpy as np \nimport cv2 \nimport sys\n \n \n \n")
         self.function_file.write('original_img = cv2.imread("'+self.path+'"'+")\n")
