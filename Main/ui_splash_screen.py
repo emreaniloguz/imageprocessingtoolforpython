@@ -15,16 +15,15 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QRadialGradient)
 from PySide2.QtWidgets import *
 
-
 class Ui_SplashScreen(object):
     def setupUi(self, SplashScreen):
         if not SplashScreen.objectName():
             SplashScreen.setObjectName(u"SplashScreen")
-        SplashScreen.resize(300, 300)
-        SplashScreen.setMaximumSize(QSize(300, 300))
+        SplashScreen.resize(400, 400)
+        SplashScreen.setMaximumSize(QSize(400, 400))
         self.centralwidget = QWidget(SplashScreen)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.centralwidget.setMaximumSize(QSize(300, 300))
+        self.centralwidget.setMaximumSize(QSize(400, 400))
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -40,7 +39,7 @@ class Ui_SplashScreen(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.splash_main = QFrame(self.progress_bar)
         self.splash_main.setObjectName(u"splash_main")
-        self.splash_main.setMaximumSize(QSize(700, 550))
+        self.splash_main.setMaximumSize(QSize(400, 400))
         self.splash_main.setStyleSheet(u"background-color: rgb(70,70,70);\n"
 "border-radius: 135px;")
         self.splash_main.setFrameShape(QFrame.StyledPanel)
