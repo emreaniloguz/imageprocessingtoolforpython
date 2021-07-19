@@ -18,6 +18,6 @@ For now its just support masking operations, but in the next couple of months, d
 
 ## Our social media accounts for more information, collaboration etc.: ##
 
-- [Emre Anıl Oğuz] (https://www.linkedin.com/in/emre-anıl-oğuz-a899aa169/)
-- [Rabia Elif Çelik] (https://www.linkedin.com/in/rabia-elif-çelik-a402a8146/)
+- Emre Anıl Oğuz (https://www.linkedin.com/in/emre-anıl-oğuz-a899aa169/)
+- Rabia Elif Çelik (https://www.linkedin.com/in/rabia-elif-çelik-a402a8146/)
 
