@@ -19,7 +19,6 @@ import numpy as np
 from ui_splash_screen import Ui_SplashScreen
 import os
 
-# IMPORT FUNCTIONS
 class HistCanvas(FigureCanvas):
 
     def __init__(self, graph_type,parent=None, width=5, height=4, dpi=100,facecolor=(31/255,31/255,31/255,1)):
@@ -30,7 +29,8 @@ class HistCanvas(FigureCanvas):
 
         super(HistCanvas, self).__init__(fig)
 
-class MplCanvas(FigureCanvas):
+class MultiDimCanvas(FigureCanvas):
+
 
     def __init__(self, graph_type,parent=None, width=5, height=4, dpi=100,facecolor=(41/255,41/255,41/255,1)):
         fig = Figure(figsize=(width, height), dpi=dpi,facecolor=facecolor)
@@ -59,26 +59,40 @@ class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
 
-        #Creating Window
+        #Prepare the UI File
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        #Declare the User Path
         self.desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
-        self.counter = 0
-
-        self.setWindowFlags(QtCore.Qt.FramelessWindowHint) #Remove title bar
-
-        self.canvas = MplCanvas(0,width=5, height=4, dpi=100)
-        self.hsv_canvas = MplCanvas(1, width=5, height=4, dpi=100)
-        self.yuv_canvas = MplCanvas(2,width=5, height=4, dpi=100)
 
 
+        #Remove the Frame in the Interface
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+
+
+        ## Create the Plot Canvas
+        self.canvas = MultiDimCanvas(0,width=5, height=4, dpi=100)
+        self.hsv_canvas = MultiDimCanvas(1, width=5, height=4, dpi=100)
+        self.yuv_canvas = MultiDimCanvas(2,width=5, height=4, dpi=100)
+        ##
+
+
+        ##
         self.create_buttons()
+        ##
+
+
+
+        ## Prepare the button styles
         self.prepare_stylesheets(self.rgb_pushbutton)
         self.prepare_stylesheets(self.hsv_pushbutton)
         self.prepare_stylesheets(self.yuv_pushbutton)
+        ##
 
 
+
+        ## Create the layouts which will be the containers of the buttons and 3-d Graphs
         self.rgb_layout = QVBoxLayout()
         self.ui.rgb_frame.setLayout(self.rgb_layout)
         self.rgb_layout.addWidget(self.canvas)
@@ -94,14 +108,22 @@ class MainWindow(QMainWindow):
         self.ui.yuv_frame.setLayout(self.yuv_layout)
         self.yuv_layout.addWidget(self.yuv_canvas)
         self.yuv_layout.addWidget(self.yuv_pushbutton, 9, Qt.AlignHCenter)
+        ##
 
 
 
-        #
+
+
+
+        ## Create the histogram canvas
         self.mask_1_canvas = HistCanvas(0,width=5,height=4,dpi=100)
         self.mask_2_canvas = HistCanvas(0,width=5,height=4,dpi=100)
         self.mask_3_canvas = HistCanvas(0)
-        #
+        ##
+
+
+
+        ## Creates the layouts which will be the containers of the histogram canvasses
         self.mask_1_layout = QHBoxLayout()
         self.mask_2_layout = QHBoxLayout()
         self.mask_3_layout = QHBoxLayout()
@@ -113,38 +135,41 @@ class MainWindow(QMainWindow):
         self.mask_1_layout.addWidget(self.mask_1_canvas)
         self.mask_2_layout.addWidget(self.mask_2_canvas)
         self.mask_3_layout.addWidget(self.mask_3_canvas)
+        ##
 
 
 
 
-        #Import Image
+        # When the import button is clicked run the import_button_clicked function
         self.ui.import_button.clicked.connect(self.import_button_clicked)
 
-        #Create Color Space Graphs
-        #Functions.create_graphs(self,self.ui.yuv_frame)
-        #Functions.create_graphs(self, self.ui.hsv_frame)
-        #Functions.create_graphs(self, self.ui.rgb_frame)
 
 
-        #self.rgb_pushbutton.clicked.connect(lambda: self.ui.StackedWidget.setCurrentWidget(self.ui.masking_page))
+        ## When the x_pushbutton is clicked run the prepare_x_mask_page function
         self.rgb_pushbutton.clicked.connect(self.prepare_rgb_mask_page)
         self.hsv_pushbutton.clicked.connect(self.prepare_hsv_mask_page)
         self.yuv_pushbutton.clicked.connect(self.prepare_yuv_mask_page)
+        ##
 
 
+        ## If slider values are changed then run the slider_x function
         self.ui.mask_1_above_slider.valueChanged.connect(self.slider_1)
         self.ui.mask_1_below_slider.valueChanged.connect(self.slider_1)
-
+        #
         self.ui.mask_2_above_slider.valueChanged.connect(self.slider_2)
         self.ui.mask_2_below_slider.valueChanged.connect(self.slider_2)
-
-
+        #
         self.ui.mask_3_above_slider.valueChanged.connect(self.slider_3)
         self.ui.mask_3_below_slider.valueChanged.connect(self.slider_3)
+        ##
 
         global flag
 
+
+        # When the return button is clicked run the prepare_when_return function
         self.ui.pushButton_3.clicked.connect(self.prepare_when_return)
+
+        # When the invert mask button is clicked run the invert_mask function
         self.ui.invert_mask_btn.clicked.connect(self.invert_mask)
 
         #to switch between mask and invert mask
@@ -155,11 +180,17 @@ class MainWindow(QMainWindow):
             self.ui.mask_btn.clicked.connect(self.invert_mask)
             flag = 0
 
+
+        ##
         self.ui.export_btn.clicked.connect(self.export_as_function)
         self.ui.contour_btn.clicked.connect(self.apply_contour)
+        ##
+
+        ##
         self.ui.exit_button.clicked.connect(lambda: self.close())
         self.ui.minimize_button.clicked.connect(lambda: self.showMinimized())
         self.ui.maximize_button.clicked.connect(lambda: self.restore_or_maximize_window())
+        ##
 
 
 
@@ -187,17 +218,35 @@ class MainWindow(QMainWindow):
 
 
     def update_plot(self,graph_type):
+        '''
+
+        This function scales and converts the selected image and then runs the prepare_3d_graphs function which is
+        responsible for preparing the 3d graphs
+
+        :param graph_type: It takes 0,1,2 which response to RGB, HSV, YUV
+        :return:
+        '''
+
+
+
         self.graph_type = graph_type
+
         try:
             img_path = self.path
             img = cv2.imread(img_path)
 
-            scale = max(img.shape[0], img.shape[1], 128) / 128  # at most 64 rows and columns
+            scale = max(img.shape[0], img.shape[1], 128) / 128  # at most 128 rows and columns
+
         except:
             pass
+
+
         self.img = img
+
         self.unchanged= self.img
-        self.unchanged = cv2.cvtColor(self.unchanged, cv2.COLOR_BGR2RGB)
+
+        self.unchanged = cv2.cvtColor(self.unchanged, cv2.COLOR_BGR2RGB) # PySide accepts RGB instead of BGR !
+
         img = cv2.resize(img, (np.int(img.shape[1] / scale), np.int(img.shape[0] / scale)),
                          interpolation=cv2.INTER_NEAREST)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -211,7 +260,6 @@ class MainWindow(QMainWindow):
         elif self.graph_type==1:
             img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
             img_hsv_c = img_hsv / 255
-
 
 
             self.prepare_3d_graph(self.hsv_canvas,img_hsv,"HSV",img_hsv_c)
@@ -231,6 +279,12 @@ class MainWindow(QMainWindow):
 
 
     def import_button_clicked(self):
+        '''
+        When the import button is clicked, this function opens a dialog that provides to select of an image with proper
+        formats
+
+        :return:
+        '''
 
         filename = QFileDialog.getOpenFileName(self, 'Open File', 'C:/Users/emrea/Desktop',
                                                'Image Files (*.png *.jpg *.jpeg)')
@@ -251,6 +305,10 @@ class MainWindow(QMainWindow):
 
 
     def create_buttons(self):
+        '''
+        This function creates color space buttons
+        :return:
+        '''
         self.rgb_pushbutton = QPushButton("    Choose RGB    ")
         self.hsv_pushbutton = QPushButton("    Choose HSV    ")
         self.yuv_pushbutton = QPushButton("    Choose YUV    ")
@@ -258,6 +316,11 @@ class MainWindow(QMainWindow):
         #pass
 
     def prepare_stylesheets(self,button):
+        '''
+
+        :param button: Takes the created button and prepare it's style
+        :return:
+        '''
         button.setStyleSheet("""QPushButton{
                 background-color: none;
                 background-color:rgb(80,80,80);
@@ -280,7 +343,6 @@ class MainWindow(QMainWindow):
 
         self.ui.StackedWidget.setCurrentWidget(self.ui.masking_page)
         self.ui.mask_photo.setPixmap(self.pixmap)
-
         #
 
 
@@ -308,7 +370,16 @@ class MainWindow(QMainWindow):
         self.update_mask_plot(1,2)
         self.update_mask_plot(2,2)
 
+
+
+
     def update_mask_plot(self,graph_type,color_space):
+        '''
+        This function updates histogram graphs with every new imported image
+        :param graph_type: Graph Order
+        :param color_space: RGB, HSV, YUV --> 0, 1, 2
+        :return:
+        '''
 
         if color_space == 0:
 
@@ -404,6 +475,10 @@ class MainWindow(QMainWindow):
 
 
     def slider_1(self):
+        '''
+        Detects slider values and calls prepare_hist_graphs_styles
+        :return:
+        '''
 
         if self.ui.mask_1_above_slider.value()==0:
             pass
@@ -413,6 +488,11 @@ class MainWindow(QMainWindow):
             self.update_pixmap()
 
     def slider_2(self):
+        '''
+        Detects slider values and calls prepare_hist_graphs_styles
+        :return:
+        '''
+
         if self.ui.mask_2_above_slider.value()==0:
             pass
         else:
@@ -423,6 +503,10 @@ class MainWindow(QMainWindow):
 
 
     def slider_3(self):
+        '''
+        Detects slider values and calls prepare_hist_graphs_styles
+        :return:
+        '''
         if self.ui.mask_3_above_slider.value()==0:
             pass
 
@@ -436,6 +520,12 @@ class MainWindow(QMainWindow):
 
 
     def update_pixmap(self):
+
+        '''
+        With the gathered slider values, this function applies mask operation to the image.
+        :return:
+        '''
+
         self.im_cpy = self.img
         self.lower_blue = np.array(
             [self.ui.mask_1_above_slider.value(), self.ui.mask_2_above_slider.value(), self.ui.mask_3_above_slider.value()])
@@ -457,6 +547,13 @@ class MainWindow(QMainWindow):
 
 
     def prepare_when_return(self):
+        '''
+        When the return button is clicked, this function clears graphs and sets sliders to the their
+        initial positions. Also photo is changes to it's original format.
+        :return:
+        '''
+
+
         self.mask_1_canvas.axes.clear()
         self.mask_2_canvas.axes.clear()
         self.mask_3_canvas.axes.clear()
@@ -478,6 +575,18 @@ class MainWindow(QMainWindow):
         self.ui.StackedWidget.setCurrentWidget(self.ui.color_space_page)
 
     def prepare_hist_graph_styles(self,canvas,above,below,hist,clr):
+        '''
+
+        :param canvas: Graph Canvas
+        :param above: Above Slider Value
+        :param below: Below Slider Value
+        :param hist: Calculated Histogram
+        :param clr: Histogram Color
+        :return:
+        '''
+
+
+
         canvas.axes.clear()
         canvas.axes.tick_params(axis="x",colors=(1,1,1,1))
         canvas.axes.tick_params(axis="y",colors=(1,1,1,1))
@@ -489,6 +598,18 @@ class MainWindow(QMainWindow):
 
 
     def prepare_3d_graph(self,canvas,img,c_spc,dot_c):
+        '''
+
+        :param canvas: Prepared graph canvas
+        :param img: Image that is going to be used in 3-d graph (Can be different color spaces)
+        :param c_spc: Axis titles for 3-d graph ("RGB","YUV","HSV",...")
+        :param dot_c: Dot colors in the Graph
+        :return:
+        '''
+
+
+
+
         if canvas == self.canvas:
             axs = self.canvas.axes
         elif canvas == self.hsv_canvas:
@@ -496,9 +617,13 @@ class MainWindow(QMainWindow):
         else:
             axs = self.yuv_canvas.axes_3
 
+
         x_title =c_spc[0]
         y_title = c_spc[1]
         z_title = c_spc[2]
+
+
+        ## Preparing the 3-D Graph
         axs.clear()
         axs.scatter(img[:, :, 0].ravel(), img[:, :, 1].ravel(), img[:, :, 2].ravel(),
                 c=dot_c.reshape((-1, 3)), edgecolors='none')
@@ -508,17 +633,18 @@ class MainWindow(QMainWindow):
         axs.tick_params(axis="x",colors=(1,1,1,1))
         axs.tick_params(axis="y",colors=(1,1,1,1))
         axs.tick_params(axis="z",colors=(1,1,1,1))
-
         canvas.draw()
+        ##
 
-
-    def find_colorspc(self):
-        try:
-            a= self.histy
-        except:
-            pass
 
     def invert_mask(self):
+        '''
+
+        This function takes the mask values which is given by an user and then invert it.
+
+        :return:
+        '''
+
 
         self.invert_msk =  cv2.bitwise_not(self.mask)
         self.invert_msk = cv2.bitwise_and(self.unchanged, self.unchanged, mask= self.invert_msk)
@@ -530,31 +656,19 @@ class MainWindow(QMainWindow):
         self.ui.mask_photo.setPixmap(self.pixmap)
 
     def apply_contour(self):
+        pass
 
-        if self.invert_msk == None:
-            im2, contours, hierarchy = cv2.findContours(self.pixmap, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-            cv2.drawContours(self.normal_mask, contours, -1, (0, 255, 0), 3)
-            height, width, channels = self.normal_mask.shape
-            bpl = 3 * width
-            self.pixmap = QImage(self.normal_mask, width, height, bpl, QImage.Format_RGB888)
-            self.pixmap = QPixmap.fromImage(self.pixmap)
-            self.pixmap = self.pixmap.scaled(480, 480, Qt.KeepAspectRatio, Qt.FastTransformation)
-            self.ui.mask_photo.setPixmap(self.pixmap)
-
-        elif self.normal_mask == None:
-            im2, contours, hierarchy = cv2.findContours(self.pixmap, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-            cv2.drawContours(self.invert_msk, contours, -1, (0, 255, 0), 3)
-            height, width, channels = self.invert_msk.shape
-            bpl = 3 * width
-            self.pixmap = QImage(self.invert_msk, width, height, bpl, QImage.Format_RGB888)
-            self.pixmap = QPixmap.fromImage(self.pixmap)
-            self.pixmap = self.pixmap.scaled(480, 480, Qt.KeepAspectRatio, Qt.FastTransformation)
-            self.ui.mask_photo.setPixmap(self.pixmap)
 
 
 
 
     def export_as_function(self):
+        '''
+        When the export button is clicked this function, it creates .py file which is consist of mask values that are
+        gathered from the sliders
+
+        :return:
+        '''
 
         self.function_file = open(str(self.desktop_path).replace("\\","/")+"/image_mask_values.py", 'w')
 
