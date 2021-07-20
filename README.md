@@ -4,12 +4,14 @@
 We have developed a user interface that has capability of apply different type of image processing functions with easily. With a well-designed user interface, different type of processes can be executed.
 
 
-##  Used  Libraries ##
+##  Used  Versions ##
 
+- Python 3.8
 - PySide2 5.12.2
 - Matplotlib 3.4.2
 - OpenCV 4.5.2.52
 - Numpy 1.18.0
+- PyCharm 2021.1
 
 
 For now its just support masking operations, but in the next couple of months, different image processing techniques will be added.
