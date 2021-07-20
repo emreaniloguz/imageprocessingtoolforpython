@@ -19,8 +19,8 @@ For now its just support masking operations, but in the next couple of months, d
 
 ## Known Issues ##
 
-- Loading screen can be seen in different resolution
-- Export button works properly only in the RGB color space
+- Loading screen can be seen in different resolution.
+- Export button works properly only in the RGB color space and will be fixed as soon as possible.
 - Contour button is a dummy function in alpha. Functionality of this button will be added in the future.
 - Used imports from another files cannot be remembered in the main.py (Ex. Use Main.ui_python)
 
