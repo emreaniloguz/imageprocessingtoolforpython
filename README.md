@@ -12,7 +12,16 @@ We have developed a user interface that has capability of apply different type o
 - Numpy 1.18.0
 
 
-For now its just support masking operations, but in the next couple of months, different image processing techniques will be added
+For now its just support masking operations, but in the next couple of months, different image processing techniques will be added.
+
+
+## Known Issues ##
+
+- Loading screen can be seen in different resolution
+- Export button works properly only in the RGB color space
+- Contour button is a dummy function in alpha. Functionality of this button will be added in the future.
+- Used imports from another files cannot be remembered in the main.py (Ex. Use Main.ui_python)
+
 
 
 
