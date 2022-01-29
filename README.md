@@ -16,6 +16,11 @@ We have developed a user interface that has capability of apply different type o
 
 For now its just support masking operations, but in the next couple of months, different image processing techniques will be added.
 
+![126235004-1f8e44d2-2a23-4b3d-a950-3d6e103dbf9a](https://user-images.githubusercontent.com/57271111/151658892-d1fb1c8f-f245-4eb1-88dd-d7c0de8629d4.png)
+
+![126234906-691a4b24-7e10-481d-a46f-3dc86279201b](https://user-images.githubusercontent.com/57271111/151658898-4c3bfd4c-f78d-4fb6-a65d-2bfd438d9a94.png)
+
+
 
 ## Known Issues ##
 
