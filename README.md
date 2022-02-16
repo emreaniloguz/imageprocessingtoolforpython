@@ -1,7 +1,6 @@
 # Basic Image Processing Application for Python / Computer Vision Applications
 
-
-We have developed a user interface that has capability of apply different type of image processing functions with easily. With a well-designed user interface, different type of processes can be executed.
+We have developed a user interface that has the capability to apply different types of image processing functions easily. With a well-designed user interface, different types of processes can be executed.
 
 
 ##  Used  Versions ##
